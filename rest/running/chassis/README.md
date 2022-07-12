@@ -13,7 +13,7 @@
   - [URI() string](#func-hastatus-uri-string)
 - [type RESTChassis](#type-restchassis)
 
-## func [NewChassis() restChassisImpl](<methods.go#L22>)
+## func [NewChassis() restChassisImpl](<methods.go#L23>)
 
 ```go
 func NewChassis(cfg *api_interface.RESTConfig) *restChassisImpl
@@ -150,14 +150,14 @@ type HAStatus struct {
 func (b *HAStatus) URI() string
 ```
 
-## type [RESTChassis](<methods.go#L9>)
+## type [RESTChassis](<methods.go#L10>)
 ```go
 type RESTChassis interface {
 	Name() string
 	URIPath() string
-	GetChassis() (*Chassis, error)
+	GetChassis() (*Chassis, errors.BrocadeErr)
 	GetChassisResponse() (*http.Response, error)
-	GetHAStatus() (*HAStatus, error)
+	GetHAStatus() (*HAStatus, errors.BrocadeErr)
 	GetHAStatusResponse() (*http.Response, error)
 }
 ```

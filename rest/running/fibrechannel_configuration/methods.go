@@ -1,29 +1,24 @@
 package fibrechannel_configuration
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type RESTFibrechannelConfiguration interface {
 	Name() string
 	URIPath() string
-	GetSwitchConfiguration() (*SwitchConfiguration, error)
-	GetPortConfiguration() (*PortConfiguration, error)
-	GetFPortLoginSettings() (*FPortLoginSettings, error)
-	GetZoneConfiguration() (*ZoneConfiguration, error)
-	GetFabric() (*Fabric, error)
+	GetSwitchConfiguration() (*SwitchConfiguration, errors.BrocadeErr)
+	GetPortConfiguration() (*PortConfiguration, errors.BrocadeErr)
+	GetFPortLoginSettings() (*FPortLoginSettings, errors.BrocadeErr)
+	GetZoneConfiguration() (*ZoneConfiguration, errors.BrocadeErr)
+	GetFabric() (*Fabric, errors.BrocadeErr)
 }
 
 type restFibrechannelConfigurationImpl struct {
 	config *api_interface.RESTConfig
-	// host        string
-	// baseURI     string
-	// session     session.Session
-	// contentType utils.ContentType
-	// client      utils.RequestClient
 }
 
 func (r *restFibrechannelConfigurationImpl) Name() string {
@@ -40,10 +35,10 @@ func NewRESTFibrechannelConfiguration(config *api_interface.RESTConfig) RESTFibr
 	}
 }
 
-func (r *restFibrechannelConfigurationImpl) GetSwitchConfiguration() (*SwitchConfiguration, error) {
+func (r *restFibrechannelConfigurationImpl) GetSwitchConfiguration() (*SwitchConfiguration, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/switch-configuration", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -51,17 +46,15 @@ func (r *restFibrechannelConfigurationImpl) GetSwitchConfiguration() (*SwitchCon
 	}
 	var sc SwitchConfiguration
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &sc)
+	errs = ct.UnmarshalResponse(responseBytes, &sc)
 
-	fmt.Println("Response struct", sc)
-	fmt.Println("Response body", string(responseBytes))
-	return &sc, err
+	return &sc, errs
 }
 
-func (r *restFibrechannelConfigurationImpl) GetPortConfiguration() (*PortConfiguration, error) {
+func (r *restFibrechannelConfigurationImpl) GetPortConfiguration() (*PortConfiguration, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/port", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -69,17 +62,15 @@ func (r *restFibrechannelConfigurationImpl) GetPortConfiguration() (*PortConfigu
 	}
 	var pc PortConfiguration
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &pc)
+	errs = ct.UnmarshalResponse(responseBytes, &pc)
 
-	fmt.Println("Response struct", pc)
-	fmt.Println("Response body", string(responseBytes))
-	return &pc, err
+	return &pc, errs
 }
 
-func (r *restFibrechannelConfigurationImpl) GetFPortLoginSettings() (*FPortLoginSettings, error) {
+func (r *restFibrechannelConfigurationImpl) GetFPortLoginSettings() (*FPortLoginSettings, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/f-port-login-settings", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -87,17 +78,15 @@ func (r *restFibrechannelConfigurationImpl) GetFPortLoginSettings() (*FPortLogin
 	}
 	var fpls FPortLoginSettings
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &fpls)
+	errs = ct.UnmarshalResponse(responseBytes, &fpls)
 
-	fmt.Println("Response struct", fpls)
-	fmt.Println("Response body", string(responseBytes))
-	return &fpls, err
+	return &fpls, errs
 }
 
-func (r *restFibrechannelConfigurationImpl) GetZoneConfiguration() (*ZoneConfiguration, error) {
+func (r *restFibrechannelConfigurationImpl) GetZoneConfiguration() (*ZoneConfiguration, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/zone-configuration", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -105,17 +94,15 @@ func (r *restFibrechannelConfigurationImpl) GetZoneConfiguration() (*ZoneConfigu
 	}
 	var zc ZoneConfiguration
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &zc)
+	errs = ct.UnmarshalResponse(responseBytes, &zc)
 
-	fmt.Println("Response struct", zc)
-	fmt.Println("Response body", string(responseBytes))
-	return &zc, err
+	return &zc, errs
 }
 
-func (r *restFibrechannelConfigurationImpl) GetFabric() (*Fabric, error) {
+func (r *restFibrechannelConfigurationImpl) GetFabric() (*Fabric, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fabric", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -123,9 +110,7 @@ func (r *restFibrechannelConfigurationImpl) GetFabric() (*Fabric, error) {
 	}
 	var f Fabric
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &f)
+	errs = ct.UnmarshalResponse(responseBytes, &f)
 
-	fmt.Println("Response struct", f)
-	fmt.Println("Response body", string(responseBytes))
-	return &f, err
+	return &f, errs
 }

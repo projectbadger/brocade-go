@@ -13,6 +13,8 @@ var (
 	ErrUnmarshalFailed = errors.New("error unmarshal failed")
 )
 
+// BrocadeErr represents an error that may hold brocade
+// error format
 type BrocadeErr interface {
 	Error() string
 	GetErrors() *Errors

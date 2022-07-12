@@ -4,25 +4,25 @@ import (
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type RESTFRU interface {
 	Name() string
-	// GetBlade() ([]Port, error)
-	GetBlade() ([]Blade, error)
-	GetFan() ([]Fan, error)
-	GetPowerSupply() ([]PowerSupply, error)
+	GetBlade() ([]Blade, errors.BrocadeErr)
+	GetFan() ([]Fan, errors.BrocadeErr)
+	GetPowerSupply() ([]PowerSupply, errors.BrocadeErr)
 }
 
 type restFRUImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func (r *restFRUImpl) Name() string {
+func (r restFRUImpl) Name() string {
 	return "brocade-fru"
 }
 
-func (r *restFRUImpl) URIPath() string {
+func (r restFRUImpl) URIPath() string {
 	return "/running/brocade-fru"
 }
 
@@ -32,10 +32,10 @@ func NewRESTFRU(config *api_interface.RESTConfig) RESTFRU {
 	}
 }
 
-func (r *restFRUImpl) GetBlade() ([]Blade, error) {
-	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/blade", nil)
-	if err != nil {
-		return nil, err
+func (r *restFRUImpl) GetBlade() ([]Blade, errors.BrocadeErr) {
+	req, httpErr := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/blade", nil)
+	if httpErr != nil {
+		return nil, errors.NewFromErr(httpErr)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -43,14 +43,14 @@ func (r *restFRUImpl) GetBlade() ([]Blade, error) {
 	}
 	var blade []Blade
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &blade)
-	return blade, err
+	errs = ct.UnmarshalResponse(responseBytes, &blade)
+	return blade, errs
 }
 
-func (r *restFRUImpl) GetFan() ([]Fan, error) {
+func (r *restFRUImpl) GetFan() ([]Fan, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fan", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -58,14 +58,14 @@ func (r *restFRUImpl) GetFan() ([]Fan, error) {
 	}
 	var fan []Fan
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &fan)
-	return fan, err
+	errs = ct.UnmarshalResponse(responseBytes, &fan)
+	return fan, errs
 }
 
-func (r *restFRUImpl) GetPowerSupply() ([]PowerSupply, error) {
+func (r *restFRUImpl) GetPowerSupply() ([]PowerSupply, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/power-supply", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -73,6 +73,6 @@ func (r *restFRUImpl) GetPowerSupply() ([]PowerSupply, error) {
 	}
 	var ps []PowerSupply
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &ps)
-	return ps, err
+	errs = ct.UnmarshalResponse(responseBytes, &ps)
+	return ps, errs
 }

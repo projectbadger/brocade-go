@@ -81,17 +81,22 @@ type RASLogModule struct {
 }
 ```
 
-## type [RESTLogging](<methods.go#L9>)
+## type [RESTLogging](<methods.go#L10>)
 ```go
 type RESTLogging interface {
 	Name() string
-	// GetBlade() ([]Port, error)
-	GetLogging() (*BrocadeLogging, error)
 	URIPath() string
+	GetLogging() (*BrocadeLogging, errors.BrocadeErr)
+	GetAudit() (*Audit, errors.BrocadeErr)
+	GetSyslogServer() ([]SyslogServer, errors.BrocadeErr)
+	GetRASLog() ([]RASLog, errors.BrocadeErr)
+	GetLogQuietControl() ([]LogQuietControl, errors.BrocadeErr)
+	GetRASLogModule() ([]RASLogModule, errors.BrocadeErr)
+	GetLogSetting() (*LogSettings, errors.BrocadeErr)
 }
 ```
 
-## func [NewRESTLogging() RESTLogging](<methods.go#L24>)
+## func [NewRESTLogging() RESTLogging](<methods.go#L30>)
 
 ```go
 func NewRESTLogging(config *api_interface.RESTConfig) RESTLogging

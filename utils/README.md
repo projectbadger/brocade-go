@@ -2,7 +2,7 @@
 # utils
 
 ```go
-import brocade/utils
+import github.com/projectbadger/brocade-go/utils
 ```
 
 ## Index
@@ -50,43 +50,43 @@ func Base64URLEncode(content []byte) []byte
 ```
 
 
-## type [ContentType](<types.go#L10>)
+## type [ContentType](<types.go#L11>)
 ```go
 type ContentType string
 ```
 
-## func (*ContentType) [Marshal() error](<types.go#L133>)
+## func (*ContentType) [Marshal() error](<types.go#L134>)
 
 ```go
 func (ct *ContentType) Marshal(v interface{}) ([]byte, error)
 ```
-## func (*ContentType) [SetRequestHeaders()](<types.go#L12>)
+## func (*ContentType) [SetRequestHeaders()](<types.go#L13>)
 
 ```go
 func (ct *ContentType) SetRequestHeaders(req *http.Request)
 ```
-## func (*ContentType) [String() string](<types.go#L29>)
+## func (*ContentType) [String() string](<types.go#L30>)
 
 ```go
 func (ct *ContentType) String() string
 ```
-## func (*ContentType) [Unmarshal() brocade_errors](<types.go#L36>)
+## func (*ContentType) [Unmarshal() brocade_errors](<types.go#L37>)
 
 ```go
 func (ct *ContentType) Unmarshal(data []byte, v interface{}) brocade_errors.BrocadeErr
 ```
-## func (*ContentType) [UnmarshalResponse() brocade_errors](<types.go#L49>)
+## func (*ContentType) [UnmarshalResponse() brocade_errors](<types.go#L50>)
 
 ```go
 func (ct *ContentType) UnmarshalResponse(data []byte, v interface{}) brocade_errors.BrocadeErr
 ```
-## func (*ContentType) [Valid() bool](<types.go#L17>)
+## func (*ContentType) [Valid() bool](<types.go#L18>)
 
 ```go
 func (ct *ContentType) Valid() bool
 ```
 
-## type [RequestClient](<types.go#L146>)
+## type [RequestClient](<types.go#L147>)
 ```go
 type RequestClient interface {
 	Do(*http.Request) (*http.Response, error)

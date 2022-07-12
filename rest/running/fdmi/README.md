@@ -215,19 +215,19 @@ type Port struct {
 }
 ```
 
-## type [RESTFDMI](<methods.go#L9>)
+## type [RESTFDMI](<methods.go#L10>)
 ```go
 type RESTFDMI interface {
 	Name() string
 	URIPath() string
-	GetHBA() ([]HBA, error)
+	GetHBA() ([]HBA, errors.BrocadeErr)
 	GetHBAResponse() (*http.Response, error)
-	GetPort() ([]Port, error)
+	GetPort() ([]Port, errors.BrocadeErr)
 	GetPortResponse() (*http.Response, error)
 }
 ```
 
-## func [NewRESTFDMI() RESTFDMI](<methods.go#L35>)
+## func [NewRESTFDMI() RESTFDMI](<methods.go#L31>)
 
 ```go
 func NewRESTFDMI(config *api_interface.RESTConfig) RESTFDMI

@@ -65,17 +65,17 @@ type FabricSwitch struct {
 }
 ```
 
-## type [RESTFabric](<methods.go#L9>)
+## type [RESTFabric](<methods.go#L10>)
 ```go
 type RESTFabric interface {
 	Name() string
 	URIPath() string
-	GetFabricSwitch() (*FabricSwitch, error)
+	GetFabricSwitch() (*FabricSwitch, errors.BrocadeErr)
 	GetFabricSwitchResponse() (*http.Response, error)
 }
 ```
 
-## func [NewRESTFabric() RESTFabric](<methods.go#L34>)
+## func [NewRESTFabric() RESTFabric](<methods.go#L29>)
 
 ```go
 func NewRESTFabric(config *api_interface.RESTConfig) RESTFabric

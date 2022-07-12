@@ -2,7 +2,7 @@
 # config
 
 ```go
-import brocade/config
+import github.com/projectbadger/brocade-go/config
 ```
 
 Package config handles all the configuration data.

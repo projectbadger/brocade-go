@@ -2,7 +2,7 @@
 # rest
 
 ```go
-import brocade/rest
+import github.com/projectbadger/brocade-go/rest
 ```
 
 ## Index
@@ -25,7 +25,7 @@ const (
 ```
 
 
-## type [REST](<rest.go#L15>)
+## type [REST](<rest.go#L16>)
 ```go
 type REST interface {
 	// SetSession(sess session.Session)
@@ -33,32 +33,32 @@ type REST interface {
 }
 ```
 
-## func [NewREST() REST](<rest.go#L49>)
+## func [NewREST() REST](<rest.go#L50>)
 
 ```go
 func NewREST(config *api_interface.RESTConfig) REST
 ```
-## func [NewRESTDefault(string, string, string) REST](<rest.go#L79>)
+## func [NewRESTDefault(string, string, string) REST](<rest.go#L80>)
 
 ```go
 func NewRESTDefault(host, username, password string) REST
 ```
-## func [NewRESTJSON(string, string, Session, RequestClient) REST](<rest.go#L55>)
+## func [NewRESTJSON(string, string, Session, RequestClient) REST](<rest.go#L56>)
 
 ```go
 func NewRESTJSON(host, baseURI string, sess session.Session, client utils.RequestClient) REST
 ```
-## func [NewRESTJSONSessionless(string, string, string, string, RequestClient) REST](<rest.go#L67>)
+## func [NewRESTJSONSessionless(string, string, string, string, RequestClient) REST](<rest.go#L68>)
 
 ```go
 func NewRESTJSONSessionless(host, baseURI, username, password string, client utils.RequestClient) REST
 ```
-## func [NewRESTXML(string, string, Session, RequestClient) REST](<rest.go#L61>)
+## func [NewRESTXML(string, string, Session, RequestClient) REST](<rest.go#L62>)
 
 ```go
 func NewRESTXML(host, baseURI string, sess session.Session, client utils.RequestClient) REST
 ```
-## func [NewRESTXMLSessionless(string, string, string, string, RequestClient) REST](<rest.go#L73>)
+## func [NewRESTXMLSessionless(string, string, string, string, RequestClient) REST](<rest.go#L74>)
 
 ```go
 func NewRESTXMLSessionless(host, baseURI, username, password string, client utils.RequestClient) REST

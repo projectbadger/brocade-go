@@ -1,28 +1,23 @@
 package fdmi
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type RESTFDMI interface {
 	Name() string
 	URIPath() string
-	GetHBA() ([]HBA, error)
+	GetHBA() ([]HBA, errors.BrocadeErr)
 	GetHBAResponse() (*http.Response, error)
-	GetPort() ([]Port, error)
+	GetPort() ([]Port, errors.BrocadeErr)
 	GetPortResponse() (*http.Response, error)
 }
 
 type restFDMIImpl struct {
 	config *api_interface.RESTConfig
-	// host        string
-	// baseURI     string
-	// session     session.Session
-	// contentType utils.ContentType
-	// client      utils.RequestClient
 }
 
 func (r *restFDMIImpl) Name() string {
@@ -39,10 +34,10 @@ func NewRESTFDMI(config *api_interface.RESTConfig) RESTFDMI {
 	}
 }
 
-func (r *restFDMIImpl) GetHBA() ([]HBA, error) {
+func (r *restFDMIImpl) GetHBA() ([]HBA, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.Name()+"/hba", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -50,11 +45,9 @@ func (r *restFDMIImpl) GetHBA() ([]HBA, error) {
 	}
 	var hba []HBA
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &hba)
+	errs = ct.UnmarshalResponse(responseBytes, &hba)
 
-	fmt.Println("Response struct", hba)
-	fmt.Println("Response body", string(responseBytes))
-	return hba, err
+	return hba, errs
 }
 
 func (b *restFDMIImpl) GetHBAResponse() (*http.Response, error) {
@@ -70,10 +63,10 @@ func (b *restFDMIImpl) GetHBAResponse() (*http.Response, error) {
 	return resp, err
 }
 
-func (r *restFDMIImpl) GetPort() ([]Port, error) {
+func (r *restFDMIImpl) GetPort() ([]Port, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.Name()+"/hba", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -81,11 +74,9 @@ func (r *restFDMIImpl) GetPort() ([]Port, error) {
 	}
 	var port []Port
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &port)
+	errs = ct.UnmarshalResponse(responseBytes, &port)
 
-	fmt.Println("Response struct", port)
-	fmt.Println("Response body", string(responseBytes))
-	return port, err
+	return port, errs
 }
 
 func (b *restFDMIImpl) GetPortResponse() (*http.Response, error) {

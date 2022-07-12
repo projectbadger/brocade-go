@@ -49,12 +49,11 @@ type License struct {
 }
 ```
 
-## type [RESTLicense](<methods.go#L10>)
+## type [RESTLicense](<methods.go#L11>)
 ```go
 type RESTLicense interface {
 	Name() string
-	// GetBlade() ([]Port, error)
-	GetLicense() (*License, error)
+	GetLicense() (*License, errors.BrocadeErr)
 }
 ```
 

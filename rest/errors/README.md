@@ -2,7 +2,7 @@
 # errors
 
 ```go
-import brocade/rest/errors
+import github.com/projectbadger/brocade-go/rest/errors
 ```
 
 ## Index
@@ -33,7 +33,10 @@ var (
 ```
 
 
-## type [BrocadeErr](<errors.go#L16>)
+## type [BrocadeErr](<errors.go#L18>)
+
+BrocadeErr represents an error that may hold brocade
+error format
 ```go
 type BrocadeErr interface {
 	Error() string
@@ -42,23 +45,23 @@ type BrocadeErr interface {
 }
 ```
 
-## func [New(string) BrocadeErr](<errors.go#L142>)
+## func [New(string) BrocadeErr](<errors.go#L144>)
 
 ```go
 func New(message string, args ...interface{}) BrocadeErr
 ```
-## func [NewFromErr(error) BrocadeErr](<errors.go#L22>)
+## func [NewFromErr(error) BrocadeErr](<errors.go#L24>)
 
 ```go
 func NewFromErr(err error) BrocadeErr
 ```
-## func [NewFromErrors() BrocadeErr](<errors.go#L39>)
+## func [NewFromErrors() BrocadeErr](<errors.go#L41>)
 
 ```go
 func NewFromErrors(err ...Error) BrocadeErr
 ```
 
-## type [BrocadeErrorImpl](<errors.go#L48>)
+## type [BrocadeErrorImpl](<errors.go#L50>)
 ```go
 type BrocadeErrorImpl struct {
 	XMLName	xml.Name	`json:"-" xml:"errors"`
@@ -66,23 +69,23 @@ type BrocadeErrorImpl struct {
 }
 ```
 
-## func (*BrocadeErrorImpl) [AddError(Error)](<errors.go#L73>)
+## func (*BrocadeErrorImpl) [AddError(Error)](<errors.go#L75>)
 
 ```go
 func (err *BrocadeErrorImpl) AddError(newErr Error)
 ```
-## func (*BrocadeErrorImpl) [Error() string](<errors.go#L53>)
+## func (*BrocadeErrorImpl) [Error() string](<errors.go#L55>)
 
 ```go
 func (err *BrocadeErrorImpl) Error() string
 ```
-## func (*BrocadeErrorImpl) [GetErrors() Errors](<errors.go#L64>)
+## func (*BrocadeErrorImpl) [GetErrors() Errors](<errors.go#L66>)
 
 ```go
 func (err *BrocadeErrorImpl) GetErrors() *Errors
 ```
 
-## type [Error](<errors.go#L108>)
+## type [Error](<errors.go#L110>)
 ```go
 type Error struct {
 	XMLName		xml.Name	`json:"-" xml:"error"`
@@ -95,18 +98,18 @@ type Error struct {
 }
 ```
 
-## func (*Error) [Error() string](<errors.go#L135>)
+## func (*Error) [Error() string](<errors.go#L137>)
 
 ```go
 func (e *Error) Error() string
 ```
-## func (*Error) [String() string](<errors.go#L124>)
+## func (*Error) [String() string](<errors.go#L126>)
 
 ```go
 func (e *Error) String() string
 ```
 
-## type [ErrorInfo](<errors.go#L118>)
+## type [ErrorInfo](<errors.go#L120>)
 ```go
 type ErrorInfo struct {
 	XMLName		xml.Name	`json:"-" xml:"error-info"`
@@ -115,7 +118,7 @@ type ErrorInfo struct {
 }
 ```
 
-## type [Errors](<errors.go#L85>)
+## type [Errors](<errors.go#L87>)
 ```go
 type Errors struct {
 	XMLName	xml.Name	`json:"-" xml:"errors"`
@@ -123,12 +126,12 @@ type Errors struct {
 }
 ```
 
-## func (*Errors) [Error() string](<errors.go#L90>)
+## func (*Errors) [Error() string](<errors.go#L92>)
 
 ```go
 func (e *Errors) Error() string
 ```
-## func (*Errors) [String() string](<errors.go#L97>)
+## func (*Errors) [String() string](<errors.go#L99>)
 
 ```go
 func (e *Errors) String() string

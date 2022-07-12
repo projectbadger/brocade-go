@@ -2,7 +2,7 @@
 # running
 
 ```go
-import brocade/rest/running
+import github.com/projectbadger/brocade-go/rest/running
 ```
 
 Broadcom fibrechannel optical switch API data models

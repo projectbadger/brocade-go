@@ -4,13 +4,14 @@ import (
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type RESTInterface interface {
 	Name() string
 	// GetFibrechannel() ([]Port, error)
-	GetFibrechannelResponse() (*http.Response, error)
-	GetFibrechannel() ([]Fibrechannel, error)
+	GetFibrechannelResponse() (*http.Response, errors.BrocadeErr)
+	GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr)
 }
 
 type restInterfaceImpl struct {
@@ -36,24 +37,24 @@ func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface {
 	}
 }
 
-func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, error) {
+func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/fibrechannel", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
-	resp, err := api_interface.GetHTTPResponse(req, r.config)
+	resp, errs := api_interface.GetHTTPResponse(req, r.config)
 	// fmt.Println("Response: ", resp, "\nerror:", err)
-	if err != nil {
-		return nil, err
+	if errs != nil {
+		return nil, errs
 	}
 	defer resp.Body.Close()
-	return resp, err
+	return resp, errs
 }
 
-func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, error) {
+func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fibrechannel", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -61,6 +62,6 @@ func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, error) {
 	}
 	var fc []Fibrechannel
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &fc)
-	return fc, err
+	errs = ct.UnmarshalResponse(responseBytes, &fc)
+	return fc, errs
 }
