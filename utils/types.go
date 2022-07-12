@@ -1,10 +1,11 @@
 package utils
 
 import (
-	brocade_errors "brocade/rest/errors"
 	"encoding/json"
 	"encoding/xml"
 	"net/http"
+
+	brocade_errors "github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type ContentType string
