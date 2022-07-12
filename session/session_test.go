@@ -1,12 +1,13 @@
 package session
 
 import (
-	"brocade/session/test_data"
 	"bytes"
 	"io"
 	"net/http"
 	"strconv"
 	"testing"
+
+	"github.com/projectbadger/brocade-go/session/test_data"
 )
 
 type testRequestClient struct {

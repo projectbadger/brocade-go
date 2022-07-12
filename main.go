@@ -10,11 +10,12 @@ REST API documentation: https://docs.broadcom.com/doc/FOS-82X-REST-API-RM
 package main
 
 import (
-	"brocade/config"
-	"brocade/log"
-	"brocade/rest"
 	"fmt"
 	"net/http"
+
+	"github.com/projectbadger/brocade-go/config"
+	"github.com/projectbadger/brocade-go/log"
+	"github.com/projectbadger/brocade-go/rest"
 )
 
 func main() {

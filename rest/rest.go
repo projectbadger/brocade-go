@@ -1,11 +1,12 @@
 package rest
 
 import (
-	"brocade/rest/api_interface"
-	"brocade/rest/running"
-	"brocade/session"
-	"brocade/utils"
 	"net/http"
+
+	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/running"
+	"github.com/projectbadger/brocade-go/session"
+	"github.com/projectbadger/brocade-go/utils"
 )
 
 const (

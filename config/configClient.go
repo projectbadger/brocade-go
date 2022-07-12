@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// "brocade/filters"
+// "github.com/projectbadger/brocade-go/filters"
 
 // ConfigApp holds all the application configuration data.
 type ConfigClient struct {

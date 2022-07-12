@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 
-	// "brocade/filters"
+	// "github.com/projectbadger/brocade-go/filters"
 
 	"os"
 

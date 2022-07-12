@@ -1,8 +1,9 @@
 package config_test
 
 import (
-	"brocade/config"
 	"fmt"
+
+	"github.com/projectbadger/brocade-go/config"
 )
 
 func Example() {

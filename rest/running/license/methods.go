@@ -1,10 +1,11 @@
 package license
 
 import (
-	"brocade/rest/api_interface"
 	"encoding/xml"
 	"fmt"
 	"net/http"
+
+	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
 type RESTLicense interface {

@@ -1,6 +1,6 @@
 package fibrechannel_logical_switch
 
-import "brocade/rest/api_interface"
+import "github.com/projectbadger/brocade-go/rest/api_interface"
 
 type RESTFibrechannelLogicalSwitch interface {
 	Name() string

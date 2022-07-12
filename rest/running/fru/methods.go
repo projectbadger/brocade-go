@@ -1,8 +1,9 @@
 package fru
 
 import (
-	"brocade/rest/api_interface"
 	"net/http"
+
+	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
 type RESTFRU interface {

@@ -1,11 +1,12 @@
 package utils
 
 import (
-	brocade_errors "brocade/rest/errors"
-	"brocade/session"
-	"brocade/utils"
 	"io/ioutil"
 	"net/http"
+
+	brocade_errors "github.com/projectbadger/brocade-go/rest/errors"
+	"github.com/projectbadger/brocade-go/session"
+	"github.com/projectbadger/brocade-go/utils"
 )
 
 func GetResponse(method, url string, body []byte, sess session.Session, contentType utils.ContentType, client utils.RequestClient) (*http.Response, brocade_errors.BrocadeErr) {

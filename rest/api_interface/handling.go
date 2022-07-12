@@ -1,12 +1,13 @@
 package api_interface
 
 import (
-	brocade_errors "brocade/rest/errors"
-	"brocade/utils"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	brocade_errors "github.com/projectbadger/brocade-go/rest/errors"
+	"github.com/projectbadger/brocade-go/utils"
 )
 
 func GetHTTPResponse(req *http.Request, config *RESTConfig) (*http.Response, brocade_errors.BrocadeErr) {

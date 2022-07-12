@@ -1,9 +1,10 @@
 package utils
 
 import (
-	"brocade/utils/test_data"
 	"encoding/xml"
 	"testing"
+
+	"github.com/projectbadger/brocade-go/utils/test_data"
 )
 
 func TestContentType(t *testing.T) {

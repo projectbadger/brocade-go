@@ -1,4 +1,4 @@
-module brocade
+module github.com/projectbadger/brocade-go
 
 go 1.17
 

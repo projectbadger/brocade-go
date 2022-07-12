@@ -1,10 +1,11 @@
 package api_interface
 
 import (
-	"brocade/session"
-	"brocade/utils"
 	"fmt"
 	"net/http"
+
+	"github.com/projectbadger/brocade-go/session"
+	"github.com/projectbadger/brocade-go/utils"
 )
 
 // type RESTInterface interface {

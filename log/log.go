@@ -1,12 +1,13 @@
 package log
 
 import (
-	"brocade/config"
 	"context"
 	"errors"
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/projectbadger/brocade-go/config"
 
 	"github.com/sirupsen/logrus"
 )

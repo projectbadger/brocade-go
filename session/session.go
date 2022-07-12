@@ -1,9 +1,10 @@
 package session
 
 import (
-	"brocade/utils"
 	"errors"
 	"net/http"
+
+	"github.com/projectbadger/brocade-go/utils"
 )
 
 type sessionType int

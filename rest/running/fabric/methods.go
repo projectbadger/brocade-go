@@ -1,9 +1,10 @@
 package fabric
 
 import (
-	"brocade/rest/api_interface"
 	"fmt"
 	"net/http"
+
+	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
 type RESTFabric interface {
