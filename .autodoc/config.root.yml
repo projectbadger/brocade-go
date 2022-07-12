@@ -1,0 +1,12 @@
+package_dir: .
+templates:
+  templates_dir: ".autodoc"
+  link_construction: "github"
+  included_data:
+  - overview
+  - subpackages
+  custom_vars:
+    - name=Brocade FOS REST API interface in Go
+    - is-root
+    - created-command=go run main.go -config .autodoc/config.root.yml > README.md
+  import_path: git.arnes.si/monitoring/brocade
