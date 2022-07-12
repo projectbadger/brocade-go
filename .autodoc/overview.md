@@ -7,7 +7,7 @@ The documentation is taken from the [Broadcom Brocade FOS REST API documentation
 
 # Using the models
 
-The models 
+The models are in individual packages in `rest/running`
 
 # Using the API
 

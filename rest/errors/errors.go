@@ -5,8 +5,6 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"strconv"
-	"strings"
 )
 
 var (
@@ -14,18 +12,19 @@ var (
 )
 
 // BrocadeErr represents an error that may hold brocade
-// error format
+// error format.
 type BrocadeErr interface {
 	Error() string
 	GetErrors() *Errors
 	AddError(Error)
 }
 
+// NewFromErr returns a new BrocadeErr from an error
 func NewFromErr(err error) BrocadeErr {
 	if err == nil {
 		return nil
 	}
-	return &BrocadeErrorImpl{
+	return &Errors{
 		Errors: []Error{
 			{
 				ErrorType:    "error",
@@ -38,62 +37,48 @@ func NewFromErr(err error) BrocadeErr {
 	}
 }
 
+// NewFromErr returns a new BrocadeErr from a number of
+// Error-s
 func NewFromErrors(err ...Error) BrocadeErr {
 	if err == nil {
 		return nil
 	}
-	return &BrocadeErrorImpl{
+	return &Errors{
 		Errors: err,
 	}
 }
 
-type BrocadeErrorImpl struct {
-	XMLName xml.Name `json:"-" xml:"errors"`
-	Errors  []Error  `json:"error" xml:"error"`
-}
-
-func (err *BrocadeErrorImpl) Error() string {
-	var errStr string
-	if err == nil {
-		return ""
-	}
-	for _, brocadeErr := range err.Errors {
-		errStr += strconv.Itoa(brocadeErr.ErrorInfo.ErrorCode) + ": " + brocadeErr.ErrorMessage + "; "
-	}
-	return strings.Trim(errStr, "; ")
-}
-
-func (err *BrocadeErrorImpl) GetErrors() *Errors {
-	if err == nil {
-		return nil
-	}
-	return &Errors{
-		Errors: err.Errors,
-	}
-}
-
-func (err *BrocadeErrorImpl) AddError(newErr Error) {
-	if err != nil {
-		err.Errors = append(err.Errors, newErr)
-		return
-	}
-	err = &BrocadeErrorImpl{
-		Errors: []Error{
-			newErr,
-		},
-	}
-}
-
+// Errors holds a slice []Error
 type Errors struct {
 	XMLName xml.Name `json:"-" xml:"errors"`
 	Errors  []Error  `json:"error" xml:"error"`
 }
 
+// Error returns a string, constructed from the contained
+// errors
 func (e *Errors) Error() string {
 	if e == nil {
 		return ""
 	}
 	return e.String()
+}
+
+// GetErrors returns Errors
+func (e *Errors) GetErrors() *Errors {
+	return e
+}
+
+// AddError appends a new Error
+func (err *Errors) AddError(newErr Error) {
+	if err != nil {
+		err.Errors = append(err.Errors, newErr)
+		return
+	}
+	err = &Errors{
+		Errors: []Error{
+			newErr,
+		},
+	}
 }
 
 func (e *Errors) String() string {
@@ -107,6 +92,7 @@ func (e *Errors) String() string {
 	return string(bytes)
 }
 
+// Error represents a Brocade REST API error
 type Error struct {
 	XMLName      xml.Name  `json:"-" xml:"error"`
 	ErrorType    string    `json:"error-type" xml:"error-type"`
@@ -123,6 +109,7 @@ type ErrorInfo struct {
 	ErrorModule string   `json:"error-module" xml:"error-module"`
 }
 
+// String returns JSON-marshaled Error
 func (e *Error) String() string {
 	if e == nil {
 		return ""
@@ -134,6 +121,7 @@ func (e *Error) String() string {
 	return string(bytes)
 }
 
+// Error returns JSON-marshaled Error
 func (e *Error) Error() string {
 	if e == nil {
 		return ""
@@ -141,11 +129,12 @@ func (e *Error) Error() string {
 	return e.String()
 }
 
+// New returns a new BrocadeErr implementation
 func New(message string, args ...interface{}) BrocadeErr {
 	if message == "" {
 		return nil
 	}
-	return &BrocadeErrorImpl{
+	return &Errors{
 		Errors: []Error{
 			{
 				ErrorType:    "error",
