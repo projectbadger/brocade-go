@@ -2,7 +2,6 @@ package api_interface
 
 import (
 	"encoding/xml"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -15,7 +14,7 @@ func GetHTTPResponse(req *http.Request, config *RESTConfig) (*http.Response, bro
 	if err != nil {
 		return nil, brocade_errors.NewFromErr(err)
 	}
-	fmt.Printf("Request before being sent out: '%#v' to URL: '%s'\n", req, req.URL.String())
+	// fmt.Printf("Request before being sent out: '%#v' to URL: '%s'\n", req, req.URL.String())
 	// return nil, errors.New("stop here before the request")
 	resp, err := config.Client().Do(req)
 	if err != nil {
@@ -55,18 +54,18 @@ func CheckBodyForErrors(body []byte, contentType utils.ContentType) brocade_erro
 	case utils.ContentTypeJSON:
 		err := contentType.Unmarshal(body, &errs)
 		if err != nil || errs.Errors.Errors == nil {
-			fmt.Println("No errors found")
+			// fmt.Println("No errors found")
 			return nil
 		}
-		fmt.Println("JSON errors parsed:", errs)
+		// fmt.Println("JSON errors parsed:", errs)
 		return brocade_errors.NewFromErrors(errs.Errors.Errors...)
 	case utils.ContentTypeXML:
 		err := contentType.Unmarshal(body, &errs.Errors)
 		if err != nil || errs.Errors.Errors == nil {
-			fmt.Println("No errors found")
+			// fmt.Println("No errors found")
 			return nil
 		}
-		fmt.Println("XML errors parsed:", errs)
+		// fmt.Println("XML errors parsed:", errs)
 		return brocade_errors.NewFromErrors(errs.Errors.Errors...)
 	default:
 		return brocade_errors.New("Unknown content type: '%#v'", contentType)

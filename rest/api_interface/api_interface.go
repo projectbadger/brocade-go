@@ -1,7 +1,6 @@
 package api_interface
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/session"
@@ -69,7 +68,7 @@ func (c *RESTConfig) Client() utils.RequestClient {
 func (c *RESTConfig) HandleRequest(req *http.Request) error {
 	// contentType := c.ContentType()
 	c.contentType.SetRequestHeaders(req)
-	fmt.Printf("Content Type: '%#v' \nSession: '%#v'\n", c.contentType, c.session)
+	// fmt.Printf("Content Type: '%#v' \nSession: '%#v'\n", c.contentType, c.session)
 	return c.session.HandleRequest(req)
 }
 

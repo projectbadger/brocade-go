@@ -1,7 +1,6 @@
 package brocade_interface
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
@@ -43,7 +42,7 @@ func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, error) {
 		return nil, err
 	}
 	resp, err := api_interface.GetHTTPResponse(req, r.config)
-	fmt.Println("Response: ", resp, "\nerror:", err)
+	// fmt.Println("Response: ", resp, "\nerror:", err)
 	if err != nil {
 		return nil, err
 	}

@@ -15,6 +15,7 @@ const (
 	sessionStateLoggedOut = iota << 1
 )
 
+// Session contains methods for authentication and session management
 type Session interface {
 	HandleRequest(*http.Request) error
 	HandleLoginResponse(*http.Response) error
