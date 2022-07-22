@@ -9,9 +9,14 @@ import (
 
 type RESTLogging interface {
 	Name() string
-	// GetBlade() ([]Port, error)
-	GetLogging() (*BrocadeLogging, error)
 	URIPath() string
+	GetLogging() (*BrocadeLogging, error)
+	GetAudit() (*Audit, error)
+	GetSyslogServer() ([]SyslogServer, error)
+	GetRASLog() ([]RASLog, error)
+	GetRASLogModule() ([]RASLogModule, error)
+	GetLogQuietControl() ([]LogQuietControl, error)
+	GetLogSetting() (*LogSettings, error)
 }
 
 type restLoggingImpl struct {

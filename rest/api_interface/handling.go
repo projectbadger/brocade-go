@@ -67,10 +67,8 @@ func CheckBodyForErrors(body []byte, contentType utils.ContentType) brocade_erro
 		}
 		// fmt.Println("XML errors parsed:", errs)
 		return brocade_errors.NewFromErrors(errs.Errors.Errors...)
-	default:
-		return brocade_errors.New("Unknown content type: '%#v'", contentType)
 	}
-
+	return brocade_errors.New("unknown content type: '%#v'", contentType)
 }
 
 func GetResponseBody(resp *http.Response) ([]byte, error) {

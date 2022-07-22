@@ -2,6 +2,7 @@ package brocade_interface
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
@@ -36,6 +37,21 @@ func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface {
 	}
 }
 
+func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, error) {
+	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fibrechannel", nil)
+	if err != nil {
+		return nil, err
+	}
+	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
+	if errs != nil {
+		return nil, errs
+	}
+	var fc []Fibrechannel
+	ct := r.config.ContentType()
+	err = ct.UnmarshalResponse(responseBytes, &fc)
+	return fc, err
+}
+
 func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, error) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/fibrechannel", nil)
 	if err != nil {
@@ -50,8 +66,12 @@ func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, error) {
 	return resp, err
 }
 
-func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, error) {
-	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fibrechannel", nil)
+func (r *restInterfaceImpl) GetLogicalEPort(portIndex int) ([]LogicalEPort, error) {
+	portIndexStr := ""
+	if portIndex > 0 {
+		portIndexStr = "/" + strconv.Itoa(portIndex)
+	}
+	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/logical-e-port"+portIndexStr, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -59,8 +79,26 @@ func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, error) {
 	if errs != nil {
 		return nil, errs
 	}
-	var fc []Fibrechannel
+	var lep []LogicalEPort
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &fc)
-	return fc, err
+	err = ct.UnmarshalResponse(responseBytes, &lep)
+	return lep, err
+}
+
+func (r *restInterfaceImpl) GetLogicalEPortResponse(portIndex int) (*http.Response, error) {
+	portIndexStr := ""
+	if portIndex > 0 {
+		portIndexStr = "/" + strconv.Itoa(portIndex)
+	}
+	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/logical-e-port"+portIndexStr, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp, err := api_interface.GetHTTPResponse(req, r.config)
+	// fmt.Println("Response: ", resp, "\nerror:", err)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	return resp, err
 }
