@@ -90,3 +90,18 @@ func NewRESTDefault(host, username, password string) REST {
 		config: api_interface.NewRESTConfig(host, "/rest", session.NewSessionlessSession(username, password), utils.ContentTypeJSON, http.DefaultClient),
 	}
 }
+
+// Execute a function during an automated login session.
+//
+// Example:
+//  rest := rest.NewRESTJSONSession("localhost:8080", "/rest", "username", "password", http.DefaultClient)
+//  err := rest.Session(func(session session.Session) error {
+//  	ps, errs := rest.Running().FRU().GetPowerSupply()
+//  	if errs != nil {
+//  		return errs
+//  	}
+//  })
+func (r *restImpl) Session(sessionFunc session.LoginSessionFunc) error {
+	session := r.config.Session()
+	return session.LoginSession(r.config.Host(), r.config.BaseURI(), r.config.Client(), sessionFunc)
+}

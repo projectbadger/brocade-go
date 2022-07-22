@@ -21,6 +21,7 @@ type Session interface {
 	HandleLoginResponse(*http.Response) error
 	Login(host, baseURI string, client utils.RequestClient) error
 	Logout(host, baseURI string, client utils.RequestClient) error
+	LoginSession(host, baseURI string, client utils.RequestClient, sessionFunc LoginSessionFunc) error
 	IsSessionless() bool
 }
 
@@ -64,6 +65,7 @@ func (s *sessionImpl) IsLoggedIn() bool {
 	return false
 }
 
+// Login sends a login request and saves the returned header.
 func (s *sessionImpl) Login(host, baseURI string, client utils.RequestClient) error {
 	req, err := http.NewRequest("POST", host+baseURI, nil)
 	if err != nil {
@@ -82,6 +84,29 @@ func (s *sessionImpl) Login(host, baseURI string, client utils.RequestClient) er
 	return err
 }
 
+// LoginSessionFunc represents a function to be executed
+// during a login session, triggered by Session.LoginSession.
+type LoginSessionFunc func(session Session) error
+
+// LoginSession executes a session where the client logs in,
+// executes a function and then logs out.
+func (s *sessionImpl) LoginSession(host, baseURI string, client utils.RequestClient, sessionFunc LoginSessionFunc) error {
+	err := s.Login(host, baseURI, client)
+	if err != nil {
+		return err
+	}
+	sessErr := sessionFunc(s)
+	err = s.Logout(host, baseURI, client)
+	if err != nil {
+		err = s.Logout(host, baseURI, client)
+	}
+	if sessErr != nil {
+		return sessErr
+	}
+	return err
+}
+
+// Logout sends a logout request.
 func (s *sessionImpl) Logout(host, baseURI string, client utils.RequestClient) error {
 	r, err := http.NewRequest("POST", host+baseURI, nil)
 	if err != nil {

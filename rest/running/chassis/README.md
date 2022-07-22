@@ -56,7 +56,7 @@ type Chassis struct {
 	PartNumber	string	`json:"part-number,omitempty" xml:"part-number"`
 	// A serial number that is used for entitlement support.
 	EntitlementSerialNumber	string	`json:"entitlement-serial-number,omitempty" xml:"entitlement-serial-number"`
-	// 	The maximum number of blades that can fit in the
+	// The maximum number of blades that can fit in the
 	// physical chassis. This includes switch, control
 	// processor, application, and core routing blades.
 	MaxBladesSupported	int	`json:"max-blades-supported,omitempty" xml:"max-blades-supported"`
@@ -102,7 +102,7 @@ which includes the following information:
 ```go
 type HAStatus struct {
 	XMLName	xml.Name	`json:"-" xml:"ha-status"`
-	// he ID of the active CP.
+	// The ID of the active CP.
 	//
 	// cp0 or cp1
 	ActiveCP	string	`json:"active-cp,omitempty" xml:"active-cp"`
