@@ -6,6 +6,8 @@ The documentation is taken from the [Broadcom Brocade FOS REST API documentation
 
 # WIP!
 
+Not all of the models have been implemented yet and methods only provide read functions.
+
 # Using the models
 
 The models are in individual packages in `rest/running`
