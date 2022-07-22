@@ -7,9 +7,9 @@ import github.com/projectbadger/brocade-go/rest/api_interface
 
 ## Index
 
-- [CheckBodyForErrors(ContentType, ContentType) brocade_errors](#func-checkbodyforerrorscontenttype-contenttype-brocade-errors)
-- [GetHTTPResponse() brocade_errors](#func-gethttpresponse-brocade-errors)
-- [GetResponse() brocade_errors](#func-getresponse-brocade-errors)
+- [CheckBodyForErrors(ContentType, ContentType) brocade_errors](#func-checkbodyforerrorscontenttype-contenttype-brocade_errors)
+- [GetHTTPResponse() brocade_errors](#func-gethttpresponse-brocade_errors)
+- [GetResponse() brocade_errors](#func-getresponse-brocade_errors)
 - [GetResponseBody() error](#func-getresponsebody-error)
 
 - [type RESTConfig](#type-restconfig)
