@@ -1,9 +1,13 @@
+// // Documentation source: https://docs.broadcom.com/doc/FOS-82X-REST-API-RM
 package media
 
 import "encoding/xml"
 
+// A detailed summary of the Small Form-factor Pluggable
+// (SFP) transceivers media data for all available ports.
 type BrocadeMedia struct {
-	XMLName xml.Name `json:"-" xml:"brocade-media"`
+	XMLName  xml.Name   `json:"-" xml:"brocade-media"`
+	MediaRdp []MediaRDP `json:"media-rdp,omitempty" xml:"media-rdp"`
 }
 
 type MediaRDP struct {

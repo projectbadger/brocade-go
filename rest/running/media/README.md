@@ -1,6 +1,8 @@
 
 # media
 
+// Documentation source: https://docs.broadcom.com/doc/FOS-82X-REST-API-RM
+
 ## Index
 
 - [type AlarmType](#type-alarmtype)
@@ -11,7 +13,7 @@
 - [type RemoteOpticalProductData](#type-remoteopticalproductdata)
 
 
-## type [AlarmType](<brocadeMedia.go#L61>)
+## type [AlarmType](<brocadeMedia.go#L65>)
 ```go
 type AlarmType struct {
 	HighAlarm	bool	`json:"high-alarm,omitempty" xml:"high-alarm"`
@@ -21,14 +23,18 @@ type AlarmType struct {
 }
 ```
 
-## type [BrocadeMedia](<brocadeMedia.go#L5>)
+## type [BrocadeMedia](<brocadeMedia.go#L8>)
+
+A detailed summary of the Small Form-factor Pluggable
+(SFP) transceivers media data for all available ports.
 ```go
 type BrocadeMedia struct {
-	XMLName xml.Name `json:"-" xml:"brocade-media"`
+	XMLName		xml.Name	`json:"-" xml:"brocade-media"`
+	MediaRdp	[]MediaRDP	`json:"media-rdp,omitempty" xml:"media-rdp"`
 }
 ```
 
-## type [MediaRDP](<brocadeMedia.go#L9>)
+## type [MediaRDP](<brocadeMedia.go#L13>)
 ```go
 type MediaRDP struct {
 	XMLName				xml.Name			`json:"-" xml:"media-rdp"`
@@ -94,7 +100,7 @@ type RESTMedia interface {
 func NewRESTMedia(cfg *api_interface.RESTConfig) RESTMedia
 ```
 
-## type [RemoteOpticalProductData](<brocadeMedia.go#L52>)
+## type [RemoteOpticalProductData](<brocadeMedia.go#L56>)
 ```go
 type RemoteOpticalProductData struct {
 	XMLName		xml.Name	`json:"-" xml:"remote-optical-product-data"`

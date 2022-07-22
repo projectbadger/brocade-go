@@ -1,6 +1,8 @@
 
 # fibrechannel_trunk
 
+Documentation source: https://docs.broadcom.com/doc/FOS-82X-REST-API-RM
+
 ## Index
 
 - [type BrocadeFibrechannelTrunk](#type-brocadefibrechanneltrunk)
@@ -11,7 +13,7 @@
 - [type TrunkArea](#type-trunkarea)
 
 
-## type [BrocadeFibrechannelTrunk](<brocadeFibrechannelTrunk.go#L15>)
+## type [BrocadeFibrechannelTrunk](<brocadeFibrechannelTrunk.go#L16>)
 
 This module provides a detailed view of all trunks in
 the switch in native mode as well as the members of the
@@ -32,7 +34,7 @@ type BrocadeFibrechannelTrunk struct {
 }
 ```
 
-## type [Performance](<brocadeFibrechannelTrunk.go#L34>)
+## type [Performance](<brocadeFibrechannelTrunk.go#L35>)
 ```go
 type Performance struct {
 	XMLName		xml.Name	`json:"-" xml:"performance"`
@@ -76,7 +78,7 @@ interacting with the *fibrechannel-trunk* module.
 func NewRESTFibrechannelTrunk(cfg *api_interface.RESTConfig) RESTFibrechannelTrunk
 ```
 
-## type [Trunk](<brocadeFibrechannelTrunk.go#L22>)
+## type [Trunk](<brocadeFibrechannelTrunk.go#L23>)
 ```go
 type Trunk struct {
 	Group			string	`json:"group,omitempty" xml:"group"`
@@ -91,7 +93,7 @@ type Trunk struct {
 }
 ```
 
-## type [TrunkArea](<brocadeFibrechannelTrunk.go#L48>)
+## type [TrunkArea](<brocadeFibrechannelTrunk.go#L49>)
 ```go
 type TrunkArea struct {
 	XMLName		xml.Name	`json:"-" xml:"trunk-area"`

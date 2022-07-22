@@ -1,3 +1,4 @@
+// Documentation source: https://docs.broadcom.com/doc/FOS-82X-REST-API-RM
 package fibrechannel_trunk
 
 import "encoding/xml"
