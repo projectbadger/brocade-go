@@ -208,18 +208,17 @@ type PowerSupply struct {
 }
 ```
 
-## type [RESTFRU](<methods.go#L8>)
+## type [RESTFRU](<methods.go#L10>)
 ```go
 type RESTFRU interface {
 	Name() string
-	// GetBlade() ([]Port, error)
-	GetBlade() ([]Blade, error)
-	GetFan() ([]Fan, error)
-	GetPowerSupply() ([]PowerSupply, error)
+	GetBlade() ([]Blade, errors.BrocadeErr)
+	GetFan() ([]Fan, errors.BrocadeErr)
+	GetPowerSupply() ([]PowerSupply, errors.BrocadeErr)
 }
 ```
 
-## func [NewRESTFRU() RESTFRU](<methods.go#L28>)
+## func [NewRESTFRU() RESTFRU](<methods.go#L29>)
 
 ```go
 func NewRESTFRU(config *api_interface.RESTConfig) RESTFRU

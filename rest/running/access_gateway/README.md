@@ -19,7 +19,7 @@
 - [type PortGroupMode](#type-portgroupmode)
 - [type RESTAccessGateway](#type-restaccessgateway)
 
-## func [NewAccessGateway() restAccessGatewayImpl](<methods.go#L23>)
+## func [NewAccessGateway() restAccessGatewayImpl](<methods.go#L25>)
 
 ```go
 func NewAccessGateway(cfg *api_interface.RESTConfig) *restAccessGatewayImpl
@@ -301,16 +301,16 @@ type PortGroupMode struct {
 }
 ```
 
-## type [RESTAccessGateway](<methods.go#L9>)
+## type [RESTAccessGateway](<methods.go#L11>)
 ```go
 type RESTAccessGateway interface {
 	Name() string
-	GetPortGroupResponse() (*http.Response, error)
-	GetPortGroup() (*PortGroup, error)
-	GetNPortMapResponse() (*http.Response, error)
-	GetNPortMap() ([]NPortMap, error)
-	GetFPortListResponse() (*http.Response, error)
-	GetFPortList() ([]FPortList, error)
+	GetPortGroupResponse() (*http.Response, errors.BrocadeErr)
+	GetPortGroup() (*PortGroup, errors.BrocadeErr)
+	GetNPortMapResponse() (*http.Response, errors.BrocadeErr)
+	GetNPortMap() ([]NPortMap, errors.BrocadeErr)
+	GetFPortListResponse() (*http.Response, errors.BrocadeErr)
+	GetFPortList() ([]FPortList, errors.BrocadeErr)
 }
 ```
 

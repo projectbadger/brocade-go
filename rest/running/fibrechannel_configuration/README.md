@@ -128,20 +128,20 @@ type PortConfiguration struct {
 }
 ```
 
-## type [RESTFibrechannelConfiguration](<methods.go#L9>)
+## type [RESTFibrechannelConfiguration](<methods.go#L10>)
 ```go
 type RESTFibrechannelConfiguration interface {
 	Name() string
 	URIPath() string
-	GetSwitchConfiguration() (*SwitchConfiguration, error)
-	GetPortConfiguration() (*PortConfiguration, error)
-	GetFPortLoginSettings() (*FPortLoginSettings, error)
-	GetZoneConfiguration() (*ZoneConfiguration, error)
-	GetFabric() (*Fabric, error)
+	GetSwitchConfiguration() (*SwitchConfiguration, errors.BrocadeErr)
+	GetPortConfiguration() (*PortConfiguration, errors.BrocadeErr)
+	GetFPortLoginSettings() (*FPortLoginSettings, errors.BrocadeErr)
+	GetZoneConfiguration() (*ZoneConfiguration, errors.BrocadeErr)
+	GetFabric() (*Fabric, errors.BrocadeErr)
 }
 ```
 
-## func [NewRESTFibrechannelConfiguration() RESTFibrechannelConfiguration](<methods.go#L36>)
+## func [NewRESTFibrechannelConfiguration() RESTFibrechannelConfiguration](<methods.go#L32>)
 
 ```go
 func NewRESTFibrechannelConfiguration(config *api_interface.RESTConfig) RESTFibrechannelConfiguration

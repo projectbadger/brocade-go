@@ -1,15 +1,16 @@
 package logging
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type RESTLogging interface {
 	Name() string
 	URIPath() string
+<<<<<<< HEAD
 	GetLogging() (*BrocadeLogging, error)
 	GetAudit() (*Audit, error)
 	GetSyslogServer() ([]SyslogServer, error)
@@ -17,6 +18,15 @@ type RESTLogging interface {
 	GetRASLogModule() ([]RASLogModule, error)
 	GetLogQuietControl() ([]LogQuietControl, error)
 	GetLogSetting() (*LogSettings, error)
+=======
+	GetLogging() (*BrocadeLogging, errors.BrocadeErr)
+	GetAudit() (*Audit, errors.BrocadeErr)
+	GetSyslogServer() ([]SyslogServer, errors.BrocadeErr)
+	GetRASLog() ([]RASLog, errors.BrocadeErr)
+	GetLogQuietControl() ([]LogQuietControl, errors.BrocadeErr)
+	GetRASLogModule() ([]RASLogModule, errors.BrocadeErr)
+	GetLogSetting() (*LogSettings, errors.BrocadeErr)
+>>>>>>> 5978f9a181c0a6c42d198d47068c21f4c3e67506
 }
 
 type restLoggingImpl struct {
@@ -37,10 +47,10 @@ func (r restLoggingImpl) URIPath() string {
 	return "/running/brocade-logging"
 }
 
-func (r *restLoggingImpl) GetLogging() (*BrocadeLogging, error) {
+func (r *restLoggingImpl) GetLogging() (*BrocadeLogging, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/logging", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -48,17 +58,15 @@ func (r *restLoggingImpl) GetLogging() (*BrocadeLogging, error) {
 	}
 	var logging BrocadeLogging
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &logging)
+	errs = ct.UnmarshalResponse(responseBytes, &logging)
 
-	fmt.Println("Response struct", logging)
-	fmt.Println("Response body", string(responseBytes))
-	return &logging, err
+	return &logging, errs
 }
 
-func (r *restLoggingImpl) GetAudit() (*Audit, error) {
+func (r *restLoggingImpl) GetAudit() (*Audit, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/audit", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -66,17 +74,15 @@ func (r *restLoggingImpl) GetAudit() (*Audit, error) {
 	}
 	var audit Audit
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &audit)
+	errs = ct.UnmarshalResponse(responseBytes, &audit)
 
-	fmt.Println("Response struct", audit)
-	fmt.Println("Response body", string(responseBytes))
-	return &audit, err
+	return &audit, errs
 }
 
-func (r *restLoggingImpl) GetSyslogServer() ([]SyslogServer, error) {
+func (r *restLoggingImpl) GetSyslogServer() ([]SyslogServer, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/syslog-server", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -84,17 +90,15 @@ func (r *restLoggingImpl) GetSyslogServer() ([]SyslogServer, error) {
 	}
 	var ss []SyslogServer
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &ss)
+	errs = ct.UnmarshalResponse(responseBytes, &ss)
 
-	fmt.Println("Response struct", ss)
-	fmt.Println("Response body", string(responseBytes))
-	return ss, err
+	return ss, errs
 }
 
-func (r *restLoggingImpl) GetRASLog() ([]RASLog, error) {
+func (r *restLoggingImpl) GetRASLog() ([]RASLog, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/raslog", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -102,17 +106,15 @@ func (r *restLoggingImpl) GetRASLog() ([]RASLog, error) {
 	}
 	var ras []RASLog
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &ras)
+	errs = ct.UnmarshalResponse(responseBytes, &ras)
 
-	fmt.Println("Response struct", ras)
-	fmt.Println("Response body", string(responseBytes))
-	return ras, err
+	return ras, errs
 }
 
-func (r *restLoggingImpl) GetRASLogModule() ([]RASLogModule, error) {
+func (r *restLoggingImpl) GetRASLogModule() ([]RASLogModule, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/raslog-module", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -120,17 +122,15 @@ func (r *restLoggingImpl) GetRASLogModule() ([]RASLogModule, error) {
 	}
 	var ras []RASLogModule
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &ras)
+	errs = ct.UnmarshalResponse(responseBytes, &ras)
 
-	fmt.Println("Response struct", ras)
-	fmt.Println("Response body", string(responseBytes))
-	return ras, err
+	return ras, errs
 }
 
-func (r *restLoggingImpl) GetLogQuietControl() ([]LogQuietControl, error) {
+func (r *restLoggingImpl) GetLogQuietControl() ([]LogQuietControl, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/log-quiet-control", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -138,17 +138,15 @@ func (r *restLoggingImpl) GetLogQuietControl() ([]LogQuietControl, error) {
 	}
 	var lqc []LogQuietControl
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &lqc)
+	errs = ct.UnmarshalResponse(responseBytes, &lqc)
 
-	fmt.Println("Response struct", lqc)
-	fmt.Println("Response body", string(responseBytes))
-	return lqc, err
+	return lqc, errs
 }
 
-func (r *restLoggingImpl) GetLogSetting() (*LogSettings, error) {
+func (r *restLoggingImpl) GetLogSetting() (*LogSettings, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/log-setting", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -156,9 +154,7 @@ func (r *restLoggingImpl) GetLogSetting() (*LogSettings, error) {
 	}
 	var ls LogSettings
 	ct := r.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &ls)
+	errs = ct.UnmarshalResponse(responseBytes, &ls)
 
-	fmt.Println("Response struct", ls)
-	fmt.Println("Response body", string(responseBytes))
-	return &ls, err
+	return &ls, errs
 }

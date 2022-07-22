@@ -2,7 +2,19 @@
 # rest
 
 ```go
-import brocade/rest
+import github.com/projectbadger/brocade-go/rest
+```
+
+Brocade REST interface
+
+To use the REST interface, instantiate a new one and
+interact with its components.
+
+```go
+rest := NewDefaultREST("10.0.0.10", "username", "password")
+str := rest.Running().FRU().Name()
+fmt.Println("FRU module name:", str)
+
 ```
 
 ## Index
@@ -25,40 +37,68 @@ const (
 ```
 
 
-## type [REST](<rest.go#L15>)
+## type [REST](<rest.go#L27>)
+
+Brocade REST interface
 ```go
 type REST interface {
-	// SetSession(sess session.Session)
+	// Returns Running interface
 	Running() running.RESTRunning
 }
 ```
 
-## func [NewREST() REST](<rest.go#L49>)
+## func [NewREST() REST](<rest.go#L45>)
+
+NewREST returns a new REST interface from config
+
 
 ```go
 func NewREST(config *api_interface.RESTConfig) REST
 ```
-## func [NewRESTDefault(string, string, string) REST](<rest.go#L79>)
+## func [NewRESTDefault(string, string, string) REST](<rest.go#L88>)
+
+NewRESTDefault returns a new REST interface
+from config with predefined ContentTypeJSON,
+sessionless session and http.DefaultClient as client
+
 
 ```go
 func NewRESTDefault(host, username, password string) REST
 ```
-## func [NewRESTJSON(string, string, Session, RequestClient) REST](<rest.go#L55>)
+## func [NewRESTJSON(string, string, Session, RequestClient) REST](<rest.go#L53>)
+
+NewRESTJSON returns a new REST interface from config
+with predefined ContentTypeJSON
+
 
 ```go
 func NewRESTJSON(host, baseURI string, sess session.Session, client utils.RequestClient) REST
 ```
-## func [NewRESTJSONSessionless(string, string, string, string, RequestClient) REST](<rest.go#L67>)
+## func [NewRESTJSONSessionless(string, string, string, string, RequestClient) REST](<rest.go#L70>)
+
+NewRESTJSONSessionless returns a new REST interface
+from config with predefined ContentTypeJSON and
+sessionless session
+
 
 ```go
 func NewRESTJSONSessionless(host, baseURI, username, password string, client utils.RequestClient) REST
 ```
 ## func [NewRESTXML(string, string, Session, RequestClient) REST](<rest.go#L61>)
 
+NewRESTXML returns a new REST interface from config
+with predefined ContentTypeXML
+
+
 ```go
 func NewRESTXML(host, baseURI string, sess session.Session, client utils.RequestClient) REST
 ```
-## func [NewRESTXMLSessionless(string, string, string, string, RequestClient) REST](<rest.go#L73>)
+## func [NewRESTXMLSessionless(string, string, string, string, RequestClient) REST](<rest.go#L79>)
+
+NewRESTXMLSessionless returns a new REST interface
+from config with predefined ContentTypeXML and
+sessionless session
+
 
 ```go
 func NewRESTXMLSessionless(host, baseURI, username, password string, client utils.RequestClient) REST

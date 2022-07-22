@@ -1,18 +1,18 @@
 package chassis
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type RESTChassis interface {
 	Name() string
 	URIPath() string
-	GetChassis() (*Chassis, error)
+	GetChassis() (*Chassis, errors.BrocadeErr)
 	GetChassisResponse() (*http.Response, error)
-	GetHAStatus() (*HAStatus, error)
+	GetHAStatus() (*HAStatus, errors.BrocadeErr)
 	GetHAStatusResponse() (*http.Response, error)
 }
 
@@ -34,10 +34,10 @@ func (c restChassisImpl) URIPath() string {
 	return "/running/brocade-chassis"
 }
 
-func (c *restChassisImpl) GetChassis() (*Chassis, error) {
+func (c *restChassisImpl) GetChassis() (*Chassis, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", c.config.Host()+c.config.BaseURI()+"/"+c.URIPath()+"/chassis", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, c.config)
 	if errs != nil {
@@ -45,9 +45,9 @@ func (c *restChassisImpl) GetChassis() (*Chassis, error) {
 	}
 	var chassis Chassis
 	ct := c.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &chassis)
+	errs = ct.UnmarshalResponse(responseBytes, &chassis)
 
-	return &chassis, err
+	return &chassis, errs
 }
 
 func (c *restChassisImpl) GetChassisResponse() (*http.Response, error) {
@@ -63,10 +63,10 @@ func (c *restChassisImpl) GetChassisResponse() (*http.Response, error) {
 	return resp, err
 }
 
-func (c *restChassisImpl) GetHAStatus() (*HAStatus, error) {
+func (c *restChassisImpl) GetHAStatus() (*HAStatus, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", c.config.Host()+c.config.BaseURI()+"/"+c.URIPath()+"/ha-status", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, c.config)
 	if errs != nil {
@@ -74,11 +74,9 @@ func (c *restChassisImpl) GetHAStatus() (*HAStatus, error) {
 	}
 	var hastatus HAStatus
 	ct := c.config.ContentType()
-	err = ct.UnmarshalResponse(responseBytes, &hastatus)
+	errs = ct.UnmarshalResponse(responseBytes, &hastatus)
 
-	fmt.Println("Response struct", hastatus)
-	fmt.Println("Response body", string(responseBytes))
-	return &hastatus, err
+	return &hastatus, errs
 }
 
 func (c *restChassisImpl) GetHAStatusResponse() (*http.Response, error) {

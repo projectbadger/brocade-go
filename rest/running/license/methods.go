@@ -2,16 +2,15 @@ package license
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 
 	"github.com/projectbadger/brocade-go/rest/api_interface"
+	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
 type RESTLicense interface {
 	Name() string
-	// GetBlade() ([]Port, error)
-	GetLicense() (*License, error)
+	GetLicense() (*License, errors.BrocadeErr)
 }
 
 type restLicenseImpl struct {
@@ -28,10 +27,10 @@ func NewRESTLicense(config *api_interface.RESTConfig) RESTLicense {
 	}
 }
 
-func (r *restLicenseImpl) GetLicense() (*License, error) {
+func (r *restLicenseImpl) GetLicense() (*License, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.Name()+"/blade", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -43,13 +42,12 @@ func (r *restLicenseImpl) GetLicense() (*License, error) {
 			License License `json:"fibrechannel" xml:"fibrechannel"`
 		}
 	}
-	err = r.config.Unmarshal(responseBytes, &response)
+	ct := r.config.ContentType()
+	errs = ct.UnmarshalResponse(responseBytes, &response)
 	if err != nil {
 		// Errors returned
-		return nil, err
+		return nil, errs
 	}
 
-	fmt.Println("Response struct", response)
-	fmt.Println("Response body", string(responseBytes))
-	return &response.Response.License, err
+	return &response.Response.License, errs
 }

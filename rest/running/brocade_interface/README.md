@@ -85,17 +85,17 @@ type Neighbor struct {
 }
 ```
 
-## type [RESTInterface](<methods.go#L9>)
+## type [RESTInterface](<methods.go#L10>)
 ```go
 type RESTInterface interface {
 	Name() string
 	// GetFibrechannel() ([]Port, error)
-	GetFibrechannelResponse() (*http.Response, error)
-	GetFibrechannel() ([]Fibrechannel, error)
+	GetFibrechannelResponse() (*http.Response, errors.BrocadeErr)
+	GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr)
 }
 ```
 
-## func [NewRESTInterface() RESTInterface](<methods.go#L33>)
+## func [NewRESTInterface() RESTInterface](<methods.go#L34>)
 
 ```go
 func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface

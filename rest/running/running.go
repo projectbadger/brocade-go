@@ -27,23 +27,6 @@ import (
 	"github.com/projectbadger/brocade-go/rest/running/snmp"
 	"github.com/projectbadger/brocade-go/rest/running/time"
 	"github.com/projectbadger/brocade-go/rest/running/zone"
-	// "github.com/projectbadger/brocade-go/rest/running/fabric"
-	// "github.com/projectbadger/brocade-go/rest/running/fdmi"
-	// "github.com/projectbadger/brocade-go/rest/running/fibrechannel_configuration"
-	// "github.com/projectbadger/brocade-go/rest/running/fibrechannel_diagnostics"
-	// "github.com/projectbadger/brocade-go/rest/running/fibrechannel_logical_switch"
-	// "github.com/projectbadger/brocade-go/rest/running/fibrechannel_switch"
-	// "github.com/projectbadger/brocade-go/rest/running/fibrechannel_trunk"
-	// "github.com/projectbadger/brocade-go/rest/running/fru"
-	// "github.com/projectbadger/brocade-go/rest/running/license"
-	// "github.com/projectbadger/brocade-go/rest/running/logging"
-	// "github.com/projectbadger/brocade-go/rest/running/maps"
-	// "github.com/projectbadger/brocade-go/rest/running/media"
-	// "github.com/projectbadger/brocade-go/rest/running/name_server"
-	// "github.com/projectbadger/brocade-go/rest/running/security"
-	// "github.com/projectbadger/brocade-go/rest/running/snmp"
-	// "github.com/projectbadger/brocade-go/rest/running/time"
-	// "github.com/projectbadger/brocade-go/rest/running/zone"
 )
 
 type Running struct {
@@ -53,7 +36,7 @@ type Running struct {
 	BrocadeFDMI                      fdmi.BrocadeFDMI
 	BrocadeFibrechannelConfiguration fibrechannel_configuration.BrocadeFibrechannelConfiguration
 	BrocadeFibrechannelDiagnostics   fibrechannel_diagnostics.BrocadeFibrechannelDiagnostics
-	// BrocadeFibrechannelInterface     brocade_interface.Fibrechannel
+	BrocadeFibrechannelInterface     brocade_interface.Fibrechannel
 	BrocadeFibrechannelLogicalSwitch fibrechannel_logical_switch.BrocadeFibrechannelLogicalSwitch
 	BrocadeFibrechannelSwitch        fibrechannel_switch.BrocadeFibrechannelSwitch
 	BrocadeFibrechannelTrunk         fibrechannel_trunk.BrocadeFibrechannelTrunk
@@ -74,16 +57,25 @@ type restRunningImpl struct {
 	config *api_interface.RESTConfig
 }
 
+// Running interface for interacting with modules
 type RESTRunning interface {
+	// Returns Brocade Access Gateway interface
 	AccessGateway() access_gateway.RESTAccessGateway
+	// Returns Brocade Chassis interface
 	Chassis() chassis.RESTChassis
+	// Returns Brocade Fabric interface
 	Fabric() fabric.RESTFabric
+	// Returns FDMI interface
 	FDMI() fdmi.RESTFDMI
+	// Returns Brocade Fibrechannel Configuration interface
 	FibrechannelConfiguration() fibrechannel_configuration.RESTFibrechannelConfiguration
+	// Returns Brocade Fibrechannel Interface interface
 	FibrechannelInterface() brocade_interface.RESTInterface
+	// Returns Brocade FRU interface
 	FRU() fru.RESTFRU
 }
 
+// Returns a new Running interface from config
 func NewRunning(config *api_interface.RESTConfig) RESTRunning {
 	return &restRunningImpl{
 		config: config,

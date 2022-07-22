@@ -2,7 +2,7 @@
 # running
 
 ```go
-import brocade/rest/running
+import github.com/projectbadger/brocade-go/rest/running
 ```
 
 Broadcom fibrechannel optical switch API data models
@@ -17,26 +17,38 @@ Endpoint list: page 32
 - [type Running](#type-running)
 
 
-## type [RESTRunning](<running.go#L77>)
+## type [RESTRunning](<running.go#L61>)
+
+Running interface for interacting with modules
 ```go
 type RESTRunning interface {
+	// Returns Brocade Access Gateway interface
 	AccessGateway() access_gateway.RESTAccessGateway
+	// Returns Brocade Chassis interface
 	Chassis() chassis.RESTChassis
+	// Returns Brocade Fabric interface
 	Fabric() fabric.RESTFabric
+	// Returns FDMI interface
 	FDMI() fdmi.RESTFDMI
+	// Returns Brocade Fibrechannel Configuration interface
 	FibrechannelConfiguration() fibrechannel_configuration.RESTFibrechannelConfiguration
+	// Returns Brocade Fibrechannel Interface interface
 	FibrechannelInterface() brocade_interface.RESTInterface
+	// Returns Brocade FRU interface
 	FRU() fru.RESTFRU
 }
 ```
 
-## func [NewRunning() RESTRunning](<running.go#L87>)
+## func [NewRunning() RESTRunning](<running.go#L79>)
+
+Returns a new Running interface from config
+
 
 ```go
 func NewRunning(config *api_interface.RESTConfig) RESTRunning
 ```
 
-## type [Running](<running.go#L49>)
+## type [Running](<running.go#L32>)
 ```go
 type Running struct {
 	BrocadeAccessGateway			access_gateway.BrocadeAccessGateway
@@ -45,7 +57,7 @@ type Running struct {
 	BrocadeFDMI				fdmi.BrocadeFDMI
 	BrocadeFibrechannelConfiguration	fibrechannel_configuration.BrocadeFibrechannelConfiguration
 	BrocadeFibrechannelDiagnostics		fibrechannel_diagnostics.BrocadeFibrechannelDiagnostics
-	// BrocadeFibrechannelInterface     brocade_interface.Fibrechannel
+	BrocadeFibrechannelInterface		brocade_interface.Fibrechannel
 	BrocadeFibrechannelLogicalSwitch	fibrechannel_logical_switch.BrocadeFibrechannelLogicalSwitch
 	BrocadeFibrechannelSwitch		fibrechannel_switch.BrocadeFibrechannelSwitch
 	BrocadeFibrechannelTrunk		fibrechannel_trunk.BrocadeFibrechannelTrunk

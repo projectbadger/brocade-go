@@ -76,6 +76,7 @@ docs:
 	$(GOAUTODOC_CMD) -package ./rest/running/snmp > ./rest/running/snmp/README.md
 	$(GOAUTODOC_CMD) -package ./rest/running/time > ./rest/running/time/README.md
 	$(GOAUTODOC_CMD) -package ./rest/running/zone > ./rest/running/zone/README.md
+	$(GOAUTODOC_CMD) -package ./session > ./session/README.md
 
 
 info:
