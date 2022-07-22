@@ -3,7 +3,7 @@ package config_test
 import (
 	"fmt"
 
-	"github.com/projectbadger/brocade-go/config"
+	"github.com/projectbadger/brocade-go/examples/testing/config"
 )
 
 func Example() {
