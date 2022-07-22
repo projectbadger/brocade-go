@@ -1,10 +1,6 @@
 
 # config
 
-```go
-import github.com/projectbadger/brocade-go/config
-```
-
 Package config handles all the configuration data.
 
 Before use, the package must be initialized by the function `SetupConfig() error`. It is normally already initialized by the `init()` function.

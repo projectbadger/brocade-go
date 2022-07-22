@@ -48,8 +48,8 @@ run:
 
 docs:
 	$(GOAUTODOC_CMD) -config ./.autodoc/config.root.yml > ./README.md
-	$(GOAUTODOC_CMD) -package ./config > ./config/README.md
-	$(GOAUTODOC_CMD) -package ./log > ./log/README.md
+	$(GOAUTODOC_CMD) -package ./examples/testing/config > ./examples/testing/config/README.md
+	$(GOAUTODOC_CMD) -package ./examples/testing/log > ./examples/testing/log/README.md
 	$(GOAUTODOC_CMD) -package ./utils > ./utils/README.md
 	$(GOAUTODOC_CMD) -package ./rest > ./rest/README.md
 	$(GOAUTODOC_CMD) -package ./rest/api_interface > ./rest/api_interface/README.md

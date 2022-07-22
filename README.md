@@ -21,8 +21,9 @@ To use the REST API, you must instantiate a session and create a REST interface 
 
 ## Subpackages
 
-- [config](/config)
-- [log](/log)
+- [main](/examples/testing)
+- [config](/examples/testing/config)
+- [log](/examples/testing/log)
 - [rest](/rest)
 - [api_interface](/rest/api_interface)
 - [endpoints](/rest/endpoints)

@@ -1,14 +1,6 @@
 
 # log
 
-```go
-import github.com/projectbadger/brocade-go/log
-```
-
-webmail-tas-login Logging package
-
-Sets up logging outputs
-
 ## Index
 
 - [Debug(string)](#func-debugstring)
