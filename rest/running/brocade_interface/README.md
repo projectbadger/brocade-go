@@ -7,6 +7,7 @@
 
 - [type BrocadeInterface](#type-brocadeinterface)
 - [type Fibrechannel](#type-fibrechannel)
+- [type LogicalEPort](#type-logicaleport)
 - [type Neighbor](#type-neighbor)
 - [type RESTInterface](#type-restinterface)
   - [NewRESTInterface() RESTInterface](#func-newrestinterface-restinterface)
@@ -19,7 +20,7 @@ type BrocadeInterface struct {
 }
 ```
 
-## type [Fibrechannel](<interfaceFibrechannel.go#L7>)
+## type [Fibrechannel](<fibrechannel.go#L7>)
 ```go
 type Fibrechannel struct {
 	XMLName				xml.Name	`json:"-,omitempty" xml:"fibrechannel"`
@@ -76,7 +77,19 @@ type Fibrechannel struct {
 }
 ```
 
-## type [Neighbor](<interfaceFibrechannel.go#L67>)
+## type [LogicalEPort](<logicalEPort.go#L3>)
+```go
+type LogicalEPort struct {
+	PortIndex		int		`json:"port-index,omitempty" xml:"port-index"`
+	FabricId		string		`json:"fabric-id,omitempty" xml:"fabric-id"`
+	OperationalStatus	string		`json:"operational-status,omitempty" xml:"operational-status"`
+	OfflineReason		string		`json:"offline-reason,omitempty" xml:"offline-reason"`
+	NeighborNodeWWN		string		`json:"neighbor-node-wwn,omitempty" xml:"neighbor-node-wwn"`
+	AssociatedPhysicalPorts	[]string	`json:"associated-physical-ports,omitempty" xml:"associated-physical-ports>port"`
+}
+```
+
+## type [Neighbor](<fibrechannel.go#L67>)
 
 Neighbor holds a list of neighbo(u)r WWNs.
 ```go
@@ -85,7 +98,7 @@ type Neighbor struct {
 }
 ```
 
-## type [RESTInterface](<methods.go#L10>)
+## type [RESTInterface](<methods.go#L11>)
 ```go
 type RESTInterface interface {
 	Name() string
@@ -95,7 +108,7 @@ type RESTInterface interface {
 }
 ```
 
-## func [NewRESTInterface() RESTInterface](<methods.go#L34>)
+## func [NewRESTInterface() RESTInterface](<methods.go#L35>)
 
 ```go
 func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface

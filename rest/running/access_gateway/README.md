@@ -3,8 +3,6 @@
 
 ## Index
 
-- [NewAccessGateway() restAccessGatewayImpl](#func-newaccessgateway-restaccessgatewayimpl)
-
 - [type BrocadeAccessGateway](#type-brocadeaccessgateway)
   - [URI() string](#func-brocadeaccessgateway-uri-string)
 - [type DeviceList](#type-devicelist)
@@ -18,12 +16,7 @@
   - [URI() string](#func-portgroup-uri-string)
 - [type PortGroupMode](#type-portgroupmode)
 - [type RESTAccessGateway](#type-restaccessgateway)
-
-## func [NewAccessGateway() restAccessGatewayImpl](<methods.go#L25>)
-
-```go
-func NewAccessGateway(cfg *api_interface.RESTConfig) *restAccessGatewayImpl
-```
+  - [NewAccessGateway() RESTAccessGateway](#func-newaccessgateway-restaccessgateway)
 
 
 ## type [BrocadeAccessGateway](<brocadeAccessGateway.go#L10>)
@@ -312,5 +305,11 @@ type RESTAccessGateway interface {
 	GetFPortListResponse() (*http.Response, errors.BrocadeErr)
 	GetFPortList() ([]FPortList, errors.BrocadeErr)
 }
+```
+
+## func [NewAccessGateway() RESTAccessGateway](<methods.go#L25>)
+
+```go
+func NewAccessGateway(cfg *api_interface.RESTConfig) RESTAccessGateway
 ```
 

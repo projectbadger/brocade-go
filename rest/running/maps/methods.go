@@ -17,7 +17,7 @@ type restMapsImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewMaps(cfg *api_interface.RESTConfig) *restMapsImpl {
+func NewMaps(cfg *api_interface.RESTConfig) RESTMAPS {
 	return &restMapsImpl{
 		config: cfg,
 	}

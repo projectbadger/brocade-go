@@ -6,20 +6,20 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
-type RESTChassis interface {
+type RESTFibrechannelSwitch interface {
 	Name() string
 	URIPath() string
 	GetFibrechannelSwitch() (*FibrechannelSwitch, error)
 	GetFibrechannelSwitchResponse() (*http.Response, error)
-	GetVirtualFabricFibrechannelSwitch() (*FibrechannelSwitch, error)
-	GetVirtualFabricFibrechannelSwitchResponse() (*http.Response, error)
+	GetVirtualFabricFibrechannelSwitch(vfId string) (*FibrechannelSwitch, error)
+	GetVirtualFabricFibrechannelSwitchResponse(vfId string) (*http.Response, error)
 }
 
 type restFibrechannelSwitchImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewChassis(cfg *api_interface.RESTConfig) *restFibrechannelSwitchImpl {
+func NewChassis(cfg *api_interface.RESTConfig) RESTFibrechannelSwitch {
 	return &restFibrechannelSwitchImpl{
 		config: cfg,
 	}

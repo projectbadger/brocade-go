@@ -39,7 +39,7 @@ func GetHTTPResponse(req *http.Request, config *RESTConfig) (*http.Response, bro
 ```go
 func GetResponse(req *http.Request, config *RESTConfig) (*http.Response, []byte, brocade_errors.BrocadeErr)
 ```
-## func [GetResponseBody() error](<handling.go#L76>)
+## func [GetResponseBody() error](<handling.go#L74>)
 
 ```go
 func GetResponseBody(resp *http.Response) ([]byte, error)

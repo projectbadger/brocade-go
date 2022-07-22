@@ -64,7 +64,7 @@ type FibrechannelLogicalSwitch struct {
 }
 ```
 
-## type [RESTFibrechannelLogicalSwitch](<methods.go#L5>)
+## type [RESTFibrechannelLogicalSwitch](<methods.go#L9>)
 ```go
 type RESTFibrechannelLogicalSwitch interface {
 	Name() string
@@ -72,7 +72,7 @@ type RESTFibrechannelLogicalSwitch interface {
 }
 ```
 
-## func [NewFibrechannelLogicalSwitch() RESTFibrechannelLogicalSwitch](<methods.go#L14>)
+## func [NewFibrechannelLogicalSwitch() RESTFibrechannelLogicalSwitch](<methods.go#L18>)
 
 ```go
 func NewFibrechannelLogicalSwitch(cfg *api_interface.RESTConfig) RESTFibrechannelLogicalSwitch

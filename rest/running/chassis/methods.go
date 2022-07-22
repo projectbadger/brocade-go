@@ -20,7 +20,7 @@ type restChassisImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewChassis(cfg *api_interface.RESTConfig) *restChassisImpl {
+func NewChassis(cfg *api_interface.RESTConfig) RESTChassis {
 	return &restChassisImpl{
 		config: cfg,
 	}

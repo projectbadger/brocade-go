@@ -5,6 +5,8 @@
 
 - [type BrocadeFibrechannelSwitch](#type-brocadefibrechannelswitch)
 - [type FibrechannelSwitch](#type-fibrechannelswitch)
+- [type RESTFibrechannelSwitch](#type-restfibrechannelswitch)
+  - [NewChassis() RESTFibrechannelSwitch](#func-newchassis-restfibrechannelswitch)
 
 
 ## type [BrocadeFibrechannelSwitch](<brocadeFibrechannelSwitch.go#L8>)
@@ -88,5 +90,23 @@ type FibrechannelSwitch struct {
 	// The text that displays during the log on process.
 	Banner	string	`json:"banner,omitempty" xml:"banner"`
 }
+```
+
+## type [RESTFibrechannelSwitch](<methods.go#L9>)
+```go
+type RESTFibrechannelSwitch interface {
+	Name() string
+	URIPath() string
+	GetFibrechannelSwitch() (*FibrechannelSwitch, error)
+	GetFibrechannelSwitchResponse() (*http.Response, error)
+	GetVirtualFabricFibrechannelSwitch(vfId string) (*FibrechannelSwitch, error)
+	GetVirtualFabricFibrechannelSwitchResponse(vfId string) (*http.Response, error)
+}
+```
+
+## func [NewChassis() RESTFibrechannelSwitch](<methods.go#L22>)
+
+```go
+func NewChassis(cfg *api_interface.RESTConfig) RESTFibrechannelSwitch
 ```
 

@@ -10,15 +10,6 @@ import (
 type RESTLogging interface {
 	Name() string
 	URIPath() string
-<<<<<<< HEAD
-	GetLogging() (*BrocadeLogging, error)
-	GetAudit() (*Audit, error)
-	GetSyslogServer() ([]SyslogServer, error)
-	GetRASLog() ([]RASLog, error)
-	GetRASLogModule() ([]RASLogModule, error)
-	GetLogQuietControl() ([]LogQuietControl, error)
-	GetLogSetting() (*LogSettings, error)
-=======
 	GetLogging() (*BrocadeLogging, errors.BrocadeErr)
 	GetAudit() (*Audit, errors.BrocadeErr)
 	GetSyslogServer() ([]SyslogServer, errors.BrocadeErr)
@@ -26,7 +17,6 @@ type RESTLogging interface {
 	GetLogQuietControl() ([]LogQuietControl, errors.BrocadeErr)
 	GetRASLogModule() ([]RASLogModule, errors.BrocadeErr)
 	GetLogSetting() (*LogSettings, errors.BrocadeErr)
->>>>>>> 5978f9a181c0a6c42d198d47068c21f4c3e67506
 }
 
 type restLoggingImpl struct {

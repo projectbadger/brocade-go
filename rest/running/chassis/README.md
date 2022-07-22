@@ -3,8 +3,6 @@
 
 ## Index
 
-- [NewChassis() restChassisImpl](#func-newchassis-restchassisimpl)
-
 - [type BrocadeChassis](#type-brocadechassis)
   - [Name() string](#func-brocadechassis-name-string)
 - [type Chassis](#type-chassis)
@@ -12,12 +10,7 @@
 - [type HAStatus](#type-hastatus)
   - [URI() string](#func-hastatus-uri-string)
 - [type RESTChassis](#type-restchassis)
-
-## func [NewChassis() restChassisImpl](<methods.go#L23>)
-
-```go
-func NewChassis(cfg *api_interface.RESTConfig) *restChassisImpl
-```
+  - [NewChassis() RESTChassis](#func-newchassis-restchassis)
 
 
 ## type [BrocadeChassis](<brocadeChassis.go#L10>)
@@ -160,5 +153,11 @@ type RESTChassis interface {
 	GetHAStatus() (*HAStatus, errors.BrocadeErr)
 	GetHAStatusResponse() (*http.Response, error)
 }
+```
+
+## func [NewChassis() RESTChassis](<methods.go#L23>)
+
+```go
+func NewChassis(cfg *api_interface.RESTConfig) RESTChassis
 ```
 

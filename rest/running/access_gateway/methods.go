@@ -22,7 +22,7 @@ type restAccessGatewayImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewAccessGateway(cfg *api_interface.RESTConfig) *restAccessGatewayImpl {
+func NewAccessGateway(cfg *api_interface.RESTConfig) RESTAccessGateway {
 	return &restAccessGatewayImpl{
 		config: cfg,
 	}

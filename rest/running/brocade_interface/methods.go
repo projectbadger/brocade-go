@@ -38,11 +38,10 @@ func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface {
 	}
 }
 
-<<<<<<< HEAD
-func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, error) {
+func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr) {
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fibrechannel", nil)
 	if err != nil {
-		return nil, err
+		return nil, errors.NewFromErr(err)
 	}
 	_, responseBytes, errs := api_interface.GetResponse(req, r.config)
 	if errs != nil {
@@ -51,13 +50,10 @@ func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, error) {
 	var fc []Fibrechannel
 	ct := r.config.ContentType()
 	err = ct.UnmarshalResponse(responseBytes, &fc)
-	return fc, err
+	return fc, errors.NewFromErr(err)
 }
 
-func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, error) {
-=======
 func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, errors.BrocadeErr) {
->>>>>>> 5978f9a181c0a6c42d198d47068c21f4c3e67506
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/fibrechannel", nil)
 	if err != nil {
 		return nil, errors.NewFromErr(err)
@@ -71,17 +67,12 @@ func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, errors.Br
 	return resp, errs
 }
 
-<<<<<<< HEAD
-func (r *restInterfaceImpl) GetLogicalEPort(portIndex int) ([]LogicalEPort, error) {
+func (r *restInterfaceImpl) GetLogicalEPort(portIndex int) ([]LogicalEPort, errors.BrocadeErr) {
 	portIndexStr := ""
 	if portIndex > 0 {
 		portIndexStr = "/" + strconv.Itoa(portIndex)
 	}
 	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/logical-e-port"+portIndexStr, nil)
-=======
-func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr) {
-	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fibrechannel", nil)
->>>>>>> 5978f9a181c0a6c42d198d47068c21f4c3e67506
 	if err != nil {
 		return nil, errors.NewFromErr(err)
 	}
@@ -91,9 +82,8 @@ func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr
 	}
 	var lep []LogicalEPort
 	ct := r.config.ContentType()
-<<<<<<< HEAD
 	err = ct.UnmarshalResponse(responseBytes, &lep)
-	return lep, err
+	return lep, errors.NewFromErr(err)
 }
 
 func (r *restInterfaceImpl) GetLogicalEPortResponse(portIndex int) (*http.Response, error) {
@@ -112,8 +102,4 @@ func (r *restInterfaceImpl) GetLogicalEPortResponse(portIndex int) (*http.Respon
 	}
 	defer resp.Body.Close()
 	return resp, err
-=======
-	errs = ct.UnmarshalResponse(responseBytes, &fc)
-	return fc, errs
->>>>>>> 5978f9a181c0a6c42d198d47068c21f4c3e67506
 }

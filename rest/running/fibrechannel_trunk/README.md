@@ -5,6 +5,8 @@
 
 - [type BrocadeFibrechannelTrunk](#type-brocadefibrechanneltrunk)
 - [type Performance](#type-performance)
+- [type RESTFibrechannelTrunk](#type-restfibrechanneltrunk)
+  - [NewRESTFibrechannelTrunk() RESTFibrechannelTrunk](#func-newrestfibrechanneltrunk-restfibrechanneltrunk)
 - [type Trunk](#type-trunk)
 - [type TrunkArea](#type-trunkarea)
 
@@ -45,6 +47,24 @@ type Performance struct {
 	TxRxThroughput	uint64		`json:"txrx-throughput,omitempty" xml:"txrx-throughput"`
 	TxRxPercentage	string		`json:"txrx-percentage,omitempty" xml:"txrx-percentage"`
 }
+```
+
+## type [RESTFibrechannelTrunk](<methods.go#L11>)
+```go
+type RESTFibrechannelTrunk interface {
+	Name() string
+	URIPath() string
+	GetTrunk(groupSourcePort string) (*BrocadeFibrechannelTrunk, error)
+	GetTrunkResponse(groupSourcePort string) (*http.Response, error)
+	GetPerformance(group string) (*Performance, error)
+	GetPerformanceResponse(group string) (*http.Response, error)
+}
+```
+
+## func [NewRESTFibrechannelTrunk() RESTFibrechannelTrunk](<methods.go#L24>)
+
+```go
+func NewRESTFibrechannelTrunk(cfg *api_interface.RESTConfig) RESTFibrechannelTrunk
 ```
 
 ## type [Trunk](<brocadeFibrechannelTrunk.go#L22>)

@@ -6,7 +6,7 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
-type RESTMediaRDP interface {
+type RESTMedia interface {
 	Name() string
 	URIPath() string
 	GetMediaRDP(name string) ([]MediaRDP, error)
@@ -17,7 +17,7 @@ type restMediaImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewRESTMedia(cfg *api_interface.RESTConfig) *restMediaImpl {
+func NewRESTMedia(cfg *api_interface.RESTConfig) RESTMedia {
 	return &restMediaImpl{
 		config: cfg,
 	}

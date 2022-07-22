@@ -12,16 +12,16 @@ type RESTFibrechannelTrunk interface {
 	Name() string
 	URIPath() string
 	GetTrunk(groupSourcePort string) (*BrocadeFibrechannelTrunk, error)
-	GetGetTrunkResponse(groupSourcePort string) (*http.Response, error)
-	GetPerformance() (*Performance, error)
-	GetPerformanceResponse() (*http.Response, error)
+	GetTrunkResponse(groupSourcePort string) (*http.Response, error)
+	GetPerformance(group string) (*Performance, error)
+	GetPerformanceResponse(group string) (*http.Response, error)
 }
 
 type restFibrechannelTrunkImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewRESTFibrechannelTrunk(cfg *api_interface.RESTConfig) *restFibrechannelTrunkImpl {
+func NewRESTFibrechannelTrunk(cfg *api_interface.RESTConfig) RESTFibrechannelTrunk {
 	return &restFibrechannelTrunkImpl{
 		config: cfg,
 	}

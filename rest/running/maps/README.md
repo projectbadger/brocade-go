@@ -11,6 +11,8 @@
 - [type MAPSPolicy](#type-mapspolicy)
 - [type MonitoringSystemMatrix](#type-monitoringsystemmatrix)
 - [type PausedCfg](#type-pausedcfg)
+- [type RESTMAPS](#type-restmaps)
+  - [NewMaps() RESTMAPS](#func-newmaps-restmaps)
 - [type Rule](#type-rule)
 - [type SwitchStatusPolicyReport](#type-switchstatuspolicyreport)
 - [type SystemResources](#type-systemresources)
@@ -305,6 +307,22 @@ type PausedCfg struct {
 	// There must be at least one member in the list.
 	Members	[]string	`json:"members,omitempty" xml:"members>member"`
 }
+```
+
+## type [RESTMAPS](<methods.go#L9>)
+```go
+type RESTMAPS interface {
+	Name() string
+	URIPath() string
+	GetSwitchStatusPolicyReport() (*SwitchStatusPolicyReport, error)
+	GetSwitchStatusPolicyReportResponse() (*http.Response, error)
+}
+```
+
+## func [NewMaps() RESTMAPS](<methods.go#L20>)
+
+```go
+func NewMaps(cfg *api_interface.RESTConfig) RESTMAPS
 ```
 
 ## type [Rule](<brocadeMaps.go#L264>)
