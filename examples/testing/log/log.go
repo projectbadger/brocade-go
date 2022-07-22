@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/projectbadger/brocade-go/config"
+	"github.com/projectbadger/brocade-go/examples/testing/config"
 
 	"github.com/sirupsen/logrus"
 )

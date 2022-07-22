@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/projectbadger/brocade-go/config"
-	"github.com/projectbadger/brocade-go/log"
+	"github.com/projectbadger/brocade-go/examples/testing/config"
+	"github.com/projectbadger/brocade-go/examples/testing/log"
 	"github.com/projectbadger/brocade-go/rest"
 )
 
