@@ -7,6 +7,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTFDMI describes an interface for interacting with the
+// *fdmi* module.
+// Fetch a new instance using the NewRESTFDMI function.
 type RESTFDMI interface {
 	Name() string
 	URIPath() string
@@ -16,6 +19,7 @@ type RESTFDMI interface {
 	GetPortResponse() (*http.Response, error)
 }
 
+// RESTFDMI implementation
 type restFDMIImpl struct {
 	config *api_interface.RESTConfig
 }
@@ -28,6 +32,8 @@ func (r *restFDMIImpl) URIPath() string {
 	return "/running/brocade-fdmi"
 }
 
+// Returns a new RESTFDMI implementation for interacting with
+// the *fdmi* module.
 func NewRESTFDMI(config *api_interface.RESTConfig) RESTFDMI {
 	return &restFDMIImpl{
 		config: config,

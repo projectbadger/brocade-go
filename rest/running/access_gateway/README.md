@@ -16,7 +16,7 @@
   - [URI() string](#func-portgroup-uri-string)
 - [type PortGroupMode](#type-portgroupmode)
 - [type RESTAccessGateway](#type-restaccessgateway)
-  - [NewAccessGateway() RESTAccessGateway](#func-newaccessgateway-restaccessgateway)
+  - [NewRESTAccessGateway() RESTAccessGateway](#func-newrestaccessgateway-restaccessgateway)
 
 
 ## type [BrocadeAccessGateway](<brocadeAccessGateway.go#L10>)
@@ -294,7 +294,12 @@ type PortGroupMode struct {
 }
 ```
 
-## type [RESTAccessGateway](<methods.go#L11>)
+## type [RESTAccessGateway](<methods.go#L15>)
+
+RESTAccessGateway describes an interface for interacting
+with the *brocade-access-gateway* module.
+Fetch a new instance using the NewRESTBrocadeAccessGateway
+function.
 ```go
 type RESTAccessGateway interface {
 	Name() string
@@ -307,9 +312,13 @@ type RESTAccessGateway interface {
 }
 ```
 
-## func [NewAccessGateway() RESTAccessGateway](<methods.go#L25>)
+## func [NewRESTAccessGateway() RESTAccessGateway](<methods.go#L32>)
+
+Returns a new RESTAccessGateway implementation for
+interacting with the *brocade-access-gateway* module.
+
 
 ```go
-func NewAccessGateway(cfg *api_interface.RESTConfig) RESTAccessGateway
+func NewRESTAccessGateway(cfg *api_interface.RESTConfig) RESTAccessGateway
 ```
 

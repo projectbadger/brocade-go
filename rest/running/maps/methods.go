@@ -6,6 +6,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
+// RESTMAPS describes an interface for interacting with the
+// *maps* module.
+// Fetch a new instance using the NewRESTMAPS function.
 type RESTMAPS interface {
 	Name() string
 	URIPath() string
@@ -13,6 +16,7 @@ type RESTMAPS interface {
 	GetSwitchStatusPolicyReportResponse() (*http.Response, error)
 }
 
+// RESTMAPS implementation
 type restMapsImpl struct {
 	config *api_interface.RESTConfig
 }

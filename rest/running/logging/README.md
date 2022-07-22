@@ -81,7 +81,11 @@ type RASLogModule struct {
 }
 ```
 
-## type [RESTLogging](<methods.go#L10>)
+## type [RESTLogging](<methods.go#L13>)
+
+RESTLogging describes an interface for interacting with the
+*logging* module.
+Fetch a new instance using the NewRESTLogging function.
 ```go
 type RESTLogging interface {
 	Name() string
@@ -96,7 +100,7 @@ type RESTLogging interface {
 }
 ```
 
-## func [NewRESTLogging() RESTLogging](<methods.go#L30>)
+## func [NewRESTLogging() RESTLogging](<methods.go#L34>)
 
 ```go
 func NewRESTLogging(config *api_interface.RESTConfig) RESTLogging

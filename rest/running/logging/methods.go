@@ -7,6 +7,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTLogging describes an interface for interacting with the
+// *logging* module.
+// Fetch a new instance using the NewRESTLogging function.
 type RESTLogging interface {
 	Name() string
 	URIPath() string
@@ -19,6 +22,7 @@ type RESTLogging interface {
 	GetLogSetting() (*LogSettings, errors.BrocadeErr)
 }
 
+// RESTLogging implementation
 type restLoggingImpl struct {
 	config *api_interface.RESTConfig
 }

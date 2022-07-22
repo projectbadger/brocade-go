@@ -53,7 +53,11 @@ type NTPClockServerKey struct {
 }
 ```
 
-## type [RESTTime](<methods.go#L10>)
+## type [RESTTime](<methods.go#L13>)
+
+RESTTime describes an interface for interacting with the
+*time* module.
+Fetch a new instance using the NewRESTTime function.
 ```go
 type RESTTime interface {
 	Name() string
@@ -69,7 +73,7 @@ type RESTTime interface {
 }
 ```
 
-## func [NewRESTTime() RESTTime](<methods.go#L28>)
+## func [NewRESTTime() RESTTime](<methods.go#L32>)
 
 ```go
 func NewRESTTime(cfg *api_interface.RESTConfig) RESTTime

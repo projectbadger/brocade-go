@@ -10,7 +10,7 @@
 - [type HAStatus](#type-hastatus)
   - [URI() string](#func-hastatus-uri-string)
 - [type RESTChassis](#type-restchassis)
-  - [NewChassis() RESTChassis](#func-newchassis-restchassis)
+  - [NewRESTChassis() RESTChassis](#func-newrestchassis-restchassis)
 
 
 ## type [BrocadeChassis](<brocadeChassis.go#L10>)
@@ -143,7 +143,11 @@ type HAStatus struct {
 func (b *HAStatus) URI() string
 ```
 
-## type [RESTChassis](<methods.go#L10>)
+## type [RESTChassis](<methods.go#L13>)
+
+RESTChassis describes an interface for interacting with the
+*chassis* module.
+Fetch a new instance using the NewRESTChassis function.
 ```go
 type RESTChassis interface {
 	Name() string
@@ -155,9 +159,13 @@ type RESTChassis interface {
 }
 ```
 
-## func [NewChassis() RESTChassis](<methods.go#L23>)
+## func [NewRESTChassis() RESTChassis](<methods.go#L29>)
+
+Returns a new RESTChassis implementation for interacting
+with the *chassis* module.
+
 
 ```go
-func NewChassis(cfg *api_interface.RESTConfig) RESTChassis
+func NewRESTChassis(cfg *api_interface.RESTConfig) RESTChassis
 ```
 

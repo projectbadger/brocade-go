@@ -49,7 +49,12 @@ type Performance struct {
 }
 ```
 
-## type [RESTFibrechannelTrunk](<methods.go#L11>)
+## type [RESTFibrechannelTrunk](<methods.go#L15>)
+
+RESTFibrechannelTrunk describes an interface for
+interacting with the *fibrechannel-trunk* module.
+Fetch a new instance using the NewRESTFibrechannelTrunk
+function.
 ```go
 type RESTFibrechannelTrunk interface {
 	Name() string
@@ -61,7 +66,11 @@ type RESTFibrechannelTrunk interface {
 }
 ```
 
-## func [NewRESTFibrechannelTrunk() RESTFibrechannelTrunk](<methods.go#L24>)
+## func [NewRESTFibrechannelTrunk() RESTFibrechannelTrunk](<methods.go#L31>)
+
+Returns a new RESTFibrechannelTrunk implementation for
+interacting with the *fibrechannel-trunk* module.
+
 
 ```go
 func NewRESTFibrechannelTrunk(cfg *api_interface.RESTConfig) RESTFibrechannelTrunk

@@ -50,7 +50,11 @@ type MIBCapability struct {
 }
 ```
 
-## type [RESTSNMP](<methods.go#L11>)
+## type [RESTSNMP](<methods.go#L14>)
+
+RESTSNMP describes an interface for interacting with the
+*snmp* module.
+Fetch a new instance using the NewRESTSNMP function.
 ```go
 type RESTSNMP interface {
 	Name() string
@@ -72,7 +76,7 @@ type RESTSNMP interface {
 }
 ```
 
-## func [NewRESTSNMP() RESTSNMP](<methods.go#L34>)
+## func [NewRESTSNMP() RESTSNMP](<methods.go#L38>)
 
 ```go
 func NewRESTSNMP(cfg *api_interface.RESTConfig) RESTSNMP

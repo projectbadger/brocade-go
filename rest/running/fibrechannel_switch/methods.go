@@ -6,6 +6,10 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
+// RESTFibrechannelSwitch describes an interface for
+// interacting with the *fibrechannel-switch* module.
+// Fetch a new instance using the NewRESTFibrechannelSwitch
+// function.
 type RESTFibrechannelSwitch interface {
 	Name() string
 	URIPath() string
@@ -15,11 +19,14 @@ type RESTFibrechannelSwitch interface {
 	GetVirtualFabricFibrechannelSwitchResponse(vfId string) (*http.Response, error)
 }
 
+// RESTFibrechannelSwitch implementation
 type restFibrechannelSwitchImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewChassis(cfg *api_interface.RESTConfig) RESTFibrechannelSwitch {
+// Returns a new RESTFibrechannelSwitch implementation for
+// interacting with the *fibrechannel-switch* module.
+func NewRESTFibrechannelSwitch(cfg *api_interface.RESTConfig) RESTFibrechannelSwitch {
 	return &restFibrechannelSwitchImpl{
 		config: cfg,
 	}

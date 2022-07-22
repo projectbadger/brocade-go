@@ -128,7 +128,12 @@ type PortConfiguration struct {
 }
 ```
 
-## type [RESTFibrechannelConfiguration](<methods.go#L10>)
+## type [RESTFibrechannelConfiguration](<methods.go#L14>)
+
+RESTFibrechannelConfiguration describes an interface for
+interacting with the *fibrechannel-configuration* module.
+Fetch a new instance using the
+NewRESTFibrechannelConfiguration function.
 ```go
 type RESTFibrechannelConfiguration interface {
 	Name() string
@@ -141,7 +146,11 @@ type RESTFibrechannelConfiguration interface {
 }
 ```
 
-## func [NewRESTFibrechannelConfiguration() RESTFibrechannelConfiguration](<methods.go#L32>)
+## func [NewRESTFibrechannelConfiguration() RESTFibrechannelConfiguration](<methods.go#L39>)
+
+Returns a new RESTFibrechannelTrunk for interacting with
+the *fibrechannel-configuration* module.
+
 
 ```go
 func NewRESTFibrechannelConfiguration(config *api_interface.RESTConfig) RESTFibrechannelConfiguration

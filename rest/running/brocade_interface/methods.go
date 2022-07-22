@@ -8,6 +8,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTInterface describes an interface for interacting with
+// the *brocade-interface* module.
+// Fetch a new instance using the NewRESTInterface function.
 type RESTInterface interface {
 	Name() string
 	// GetFibrechannel() ([]Port, error)
@@ -15,6 +18,7 @@ type RESTInterface interface {
 	GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr)
 }
 
+// RESTInterface implementation
 type restInterfaceImpl struct {
 	config *api_interface.RESTConfig
 	// host        string
@@ -32,6 +36,8 @@ func (r *restInterfaceImpl) URIPath() string {
 	return "/running/brocade-interface"
 }
 
+// Returns a new RESTInterface implementation for interacting
+// with the *brocade-interface* module.
 func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface {
 	return &restInterfaceImpl{
 		config: config,

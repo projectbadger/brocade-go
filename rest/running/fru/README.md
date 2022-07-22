@@ -208,7 +208,11 @@ type PowerSupply struct {
 }
 ```
 
-## type [RESTFRU](<methods.go#L10>)
+## type [RESTFRU](<methods.go#L13>)
+
+RESTFRU describes an interface for interacting with the
+*fru* module.
+Fetch a new instance using the NewRESTFRU function.
 ```go
 type RESTFRU interface {
 	Name() string
@@ -218,7 +222,11 @@ type RESTFRU interface {
 }
 ```
 
-## func [NewRESTFRU() RESTFRU](<methods.go#L29>)
+## func [NewRESTFRU() RESTFRU](<methods.go#L35>)
+
+Returns a new RESTFRU interface implementation for
+interactiong with the *fru* module
+
 
 ```go
 func NewRESTFRU(config *api_interface.RESTConfig) RESTFRU

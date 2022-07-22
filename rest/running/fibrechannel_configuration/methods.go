@@ -7,6 +7,10 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTFibrechannelConfiguration describes an interface for
+// interacting with the *fibrechannel-configuration* module.
+// Fetch a new instance using the
+// NewRESTFibrechannelConfiguration function.
 type RESTFibrechannelConfiguration interface {
 	Name() string
 	URIPath() string
@@ -17,6 +21,7 @@ type RESTFibrechannelConfiguration interface {
 	GetFabric() (*Fabric, errors.BrocadeErr)
 }
 
+// RESTFibrechannelConfiguration implementation
 type restFibrechannelConfigurationImpl struct {
 	config *api_interface.RESTConfig
 }
@@ -29,6 +34,8 @@ func (r *restFibrechannelConfigurationImpl) URIPath() string {
 	return "/running/brocade-fibrechannel-configuration"
 }
 
+// Returns a new RESTFibrechannelTrunk for interacting with
+// the *fibrechannel-configuration* module.
 func NewRESTFibrechannelConfiguration(config *api_interface.RESTConfig) RESTFibrechannelConfiguration {
 	return &restFibrechannelConfigurationImpl{
 		config: config,

@@ -7,6 +7,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTFabric describes an interface for interacting with the
+// *fabric* module.
+// Fetch a new instance using the NewRESTFabric function.
 type RESTFabric interface {
 	Name() string
 	URIPath() string
@@ -14,6 +17,7 @@ type RESTFabric interface {
 	GetFabricSwitchResponse() (*http.Response, error)
 }
 
+// RESTFabric implementation
 type restFabricImpl struct {
 	config *api_interface.RESTConfig
 }
@@ -26,6 +30,8 @@ func (r *restFabricImpl) URIPath() string {
 	return "/running/brocade-fabric"
 }
 
+// Returns a new RESTFabric implementation for interacting
+// with the *fabric* module.
 func NewRESTFabric(config *api_interface.RESTConfig) RESTFabric {
 	return &restFabricImpl{
 		config: config,

@@ -7,6 +7,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
+// RESTTime describes an interface for interacting with the
+// *time* module.
+// Fetch a new instance using the NewRESTTime function.
 type RESTTime interface {
 	Name() string
 	URIPath() string
@@ -20,6 +23,7 @@ type RESTTime interface {
 	GetNTPClockServerKeyResponse(index int32) (*http.Response, error)
 }
 
+// RESTTime interface implementation
 type restTimeImpl struct {
 	TimeZone
 	config *api_interface.RESTConfig

@@ -98,7 +98,11 @@ type Neighbor struct {
 }
 ```
 
-## type [RESTInterface](<methods.go#L11>)
+## type [RESTInterface](<methods.go#L14>)
+
+RESTInterface describes an interface for interacting with
+the *brocade-interface* module.
+Fetch a new instance using the NewRESTInterface function.
 ```go
 type RESTInterface interface {
 	Name() string
@@ -108,7 +112,11 @@ type RESTInterface interface {
 }
 ```
 
-## func [NewRESTInterface() RESTInterface](<methods.go#L35>)
+## func [NewRESTInterface() RESTInterface](<methods.go#L41>)
+
+Returns a new RESTInterface implementation for interacting
+with the *brocade-interface* module.
+
 
 ```go
 func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface

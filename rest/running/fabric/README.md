@@ -65,7 +65,11 @@ type FabricSwitch struct {
 }
 ```
 
-## type [RESTFabric](<methods.go#L10>)
+## type [RESTFabric](<methods.go#L13>)
+
+RESTFabric describes an interface for interacting with the
+*fabric* module.
+Fetch a new instance using the NewRESTFabric function.
 ```go
 type RESTFabric interface {
 	Name() string
@@ -75,7 +79,11 @@ type RESTFabric interface {
 }
 ```
 
-## func [NewRESTFabric() RESTFabric](<methods.go#L29>)
+## func [NewRESTFabric() RESTFabric](<methods.go#L35>)
+
+Returns a new RESTFabric implementation for interacting
+with the *fabric* module.
+
 
 ```go
 func NewRESTFabric(config *api_interface.RESTConfig) RESTFabric

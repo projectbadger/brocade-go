@@ -8,6 +8,10 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
+// RESTFibrechannelTrunk describes an interface for
+// interacting with the *fibrechannel-trunk* module.
+// Fetch a new instance using the NewRESTFibrechannelTrunk
+// function.
 type RESTFibrechannelTrunk interface {
 	Name() string
 	URIPath() string
@@ -17,10 +21,13 @@ type RESTFibrechannelTrunk interface {
 	GetPerformanceResponse(group string) (*http.Response, error)
 }
 
+// RESTFibrechannelTrunk implementation
 type restFibrechannelTrunkImpl struct {
 	config *api_interface.RESTConfig
 }
 
+// Returns a new RESTFibrechannelTrunk implementation for
+// interacting with the *fibrechannel-trunk* module.
 func NewRESTFibrechannelTrunk(cfg *api_interface.RESTConfig) RESTFibrechannelTrunk {
 	return &restFibrechannelTrunkImpl{
 		config: cfg,

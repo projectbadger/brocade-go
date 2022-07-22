@@ -6,6 +6,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
+// RESTMedia describes an interface for interacting with the
+// *media* module.
+// Fetch a new instance using the NewRESTMedia function.
 type RESTMedia interface {
 	Name() string
 	URIPath() string
@@ -13,6 +16,7 @@ type RESTMedia interface {
 	GetMediaRDPResponse(name string) (*http.Response, error)
 }
 
+// RESTMedia implementation
 type restMediaImpl struct {
 	config *api_interface.RESTConfig
 }

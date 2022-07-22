@@ -309,7 +309,11 @@ type PausedCfg struct {
 }
 ```
 
-## type [RESTMAPS](<methods.go#L9>)
+## type [RESTMAPS](<methods.go#L12>)
+
+RESTMAPS describes an interface for interacting with the
+*maps* module.
+Fetch a new instance using the NewRESTMAPS function.
 ```go
 type RESTMAPS interface {
 	Name() string
@@ -319,7 +323,7 @@ type RESTMAPS interface {
 }
 ```
 
-## func [NewMaps() RESTMAPS](<methods.go#L20>)
+## func [NewMaps() RESTMAPS](<methods.go#L24>)
 
 ```go
 func NewMaps(cfg *api_interface.RESTConfig) RESTMAPS

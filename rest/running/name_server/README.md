@@ -51,7 +51,11 @@ type FibrechannelNameServer struct {
 }
 ```
 
-## type [RESTNameServer](<methods.go#L9>)
+## type [RESTNameServer](<methods.go#L12>)
+
+RESTNameServer describes an interface for interacting with
+the *name-server* module.
+Fetch a new instance using the NewRESTNameServer function.
 ```go
 type RESTNameServer interface {
 	Name() string
@@ -63,7 +67,7 @@ type RESTNameServer interface {
 }
 ```
 
-## func [NewRESTNameServer() RESTNameServer](<methods.go#L22>)
+## func [NewRESTNameServer() RESTNameServer](<methods.go#L26>)
 
 ```go
 func NewRESTNameServer(cfg *api_interface.RESTConfig) RESTNameServer

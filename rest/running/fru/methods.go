@@ -7,6 +7,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTFRU describes an interface for interacting with the
+// *fru* module.
+// Fetch a new instance using the NewRESTFRU function.
 type RESTFRU interface {
 	Name() string
 	GetBlade() ([]Blade, errors.BrocadeErr)
@@ -14,6 +17,7 @@ type RESTFRU interface {
 	GetPowerSupply() ([]PowerSupply, errors.BrocadeErr)
 }
 
+// RESTFRU implementation
 type restFRUImpl struct {
 	config *api_interface.RESTConfig
 }
@@ -26,6 +30,8 @@ func (r restFRUImpl) URIPath() string {
 	return "/running/brocade-fru"
 }
 
+// Returns a new RESTFRU interface implementation for
+// interactiong with the *fru* module
 func NewRESTFRU(config *api_interface.RESTConfig) RESTFRU {
 	return &restFRUImpl{
 		config: config,

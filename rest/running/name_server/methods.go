@@ -6,6 +6,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/api_interface"
 )
 
+// RESTNameServer describes an interface for interacting with
+// the *name-server* module.
+// Fetch a new instance using the NewRESTNameServer function.
 type RESTNameServer interface {
 	Name() string
 	URIPath() string
@@ -15,6 +18,7 @@ type RESTNameServer interface {
 	GetNameServerForPortResponse(portId string) (*http.Response, error)
 }
 
+// RESTNameServer implementation
 type restNameServerImpl struct {
 	config *api_interface.RESTConfig
 }

@@ -49,7 +49,11 @@ type License struct {
 }
 ```
 
-## type [RESTLicense](<methods.go#L11>)
+## type [RESTLicense](<methods.go#L13>)
+
+RESTLicense describes an interface for interacting with the
+*license* module.
+Fetch a new instance using the NewRESTLicense function.
 ```go
 type RESTLicense interface {
 	Name() string
@@ -57,7 +61,11 @@ type RESTLicense interface {
 }
 ```
 
-## func [NewRESTLicense() RESTLicense](<methods.go#L24>)
+## func [NewRESTLicense() RESTLicense](<methods.go#L29>)
+
+NewRESTLicense returns a new RESTLicense implementation
+for interacting with the *license* module
+
 
 ```go
 func NewRESTLicense(config *api_interface.RESTConfig) RESTLicense

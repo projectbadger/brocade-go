@@ -91,11 +91,11 @@ func (r *restRunningImpl) ModuleBrocadeChassis() *chassis.BrocadeChassis {
 }
 
 func (r *restRunningImpl) AccessGateway() access_gateway.RESTAccessGateway {
-	return access_gateway.NewAccessGateway(r.config)
+	return access_gateway.NewRESTAccessGateway(r.config)
 }
 
 func (r *restRunningImpl) Chassis() chassis.RESTChassis {
-	return chassis.NewChassis(r.config)
+	return chassis.NewRESTChassis(r.config)
 }
 
 func (r *restRunningImpl) Fabric() fabric.RESTFabric {

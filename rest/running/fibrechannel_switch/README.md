@@ -6,7 +6,7 @@
 - [type BrocadeFibrechannelSwitch](#type-brocadefibrechannelswitch)
 - [type FibrechannelSwitch](#type-fibrechannelswitch)
 - [type RESTFibrechannelSwitch](#type-restfibrechannelswitch)
-  - [NewChassis() RESTFibrechannelSwitch](#func-newchassis-restfibrechannelswitch)
+  - [NewRESTFibrechannelSwitch() RESTFibrechannelSwitch](#func-newrestfibrechannelswitch-restfibrechannelswitch)
 
 
 ## type [BrocadeFibrechannelSwitch](<brocadeFibrechannelSwitch.go#L8>)
@@ -92,7 +92,12 @@ type FibrechannelSwitch struct {
 }
 ```
 
-## type [RESTFibrechannelSwitch](<methods.go#L9>)
+## type [RESTFibrechannelSwitch](<methods.go#L13>)
+
+RESTFibrechannelSwitch describes an interface for
+interacting with the *fibrechannel-switch* module.
+Fetch a new instance using the NewRESTFibrechannelSwitch
+function.
 ```go
 type RESTFibrechannelSwitch interface {
 	Name() string
@@ -104,9 +109,13 @@ type RESTFibrechannelSwitch interface {
 }
 ```
 
-## func [NewChassis() RESTFibrechannelSwitch](<methods.go#L22>)
+## func [NewRESTFibrechannelSwitch() RESTFibrechannelSwitch](<methods.go#L29>)
+
+Returns a new RESTFibrechannelSwitch implementation for
+interacting with the *fibrechannel-switch* module.
+
 
 ```go
-func NewChassis(cfg *api_interface.RESTConfig) RESTFibrechannelSwitch
+func NewRESTFibrechannelSwitch(cfg *api_interface.RESTConfig) RESTFibrechannelSwitch
 ```
 

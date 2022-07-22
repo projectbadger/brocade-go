@@ -64,15 +64,27 @@ type FibrechannelLogicalSwitch struct {
 }
 ```
 
-## type [RESTFibrechannelLogicalSwitch](<methods.go#L9>)
+## type [RESTFibrechannelLogicalSwitch](<methods.go#L14>)
+
+RESTFibrechannelLogicalSwitch describes an interface for
+interacting with the *fibrechannel-logical-switch* module.
+Fetch a new instance using the
+NewRESTFibrechannelLogicalSwitch function.
 ```go
 type RESTFibrechannelLogicalSwitch interface {
 	Name() string
 	URIPath() string
+	GetFibrechannelLogicalSwitch() ([]FibrechannelLogicalSwitch, errors.BrocadeErr)
+	GetFibrechannelLogicalSwitchResponse() (*http.Response, error)
 }
 ```
 
-## func [NewFibrechannelLogicalSwitch() RESTFibrechannelLogicalSwitch](<methods.go#L18>)
+## func [NewFibrechannelLogicalSwitch() RESTFibrechannelLogicalSwitch](<methods.go#L29>)
+
+Returns a new RESTFibrechannelLogicalSwitch implementation
+for interacting with the *fibrechannel-logical-switch*
+module.
+
 
 ```go
 func NewFibrechannelLogicalSwitch(cfg *api_interface.RESTConfig) RESTFibrechannelLogicalSwitch

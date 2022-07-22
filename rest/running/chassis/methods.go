@@ -7,6 +7,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTChassis describes an interface for interacting with the
+// *chassis* module.
+// Fetch a new instance using the NewRESTChassis function.
 type RESTChassis interface {
 	Name() string
 	URIPath() string
@@ -16,11 +19,14 @@ type RESTChassis interface {
 	GetHAStatusResponse() (*http.Response, error)
 }
 
+// RESTChassis implementation
 type restChassisImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewChassis(cfg *api_interface.RESTConfig) RESTChassis {
+// Returns a new RESTChassis implementation for interacting
+// with the *chassis* module.
+func NewRESTChassis(cfg *api_interface.RESTConfig) RESTChassis {
 	return &restChassisImpl{
 		config: cfg,
 	}

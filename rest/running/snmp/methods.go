@@ -8,6 +8,9 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTSNMP describes an interface for interacting with the
+// *snmp* module.
+// Fetch a new instance using the NewRESTSNMP function.
 type RESTSNMP interface {
 	Name() string
 	URIPath() string
@@ -27,6 +30,7 @@ type RESTSNMP interface {
 	GetAccessControlResponse(index uint16) (*http.Response, error)
 }
 
+// RESTSNMP interface implementation
 type restSNMPImpl struct {
 	config *api_interface.RESTConfig
 }

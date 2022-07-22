@@ -215,7 +215,11 @@ type Port struct {
 }
 ```
 
-## type [RESTFDMI](<methods.go#L10>)
+## type [RESTFDMI](<methods.go#L13>)
+
+RESTFDMI describes an interface for interacting with the
+*fdmi* module.
+Fetch a new instance using the NewRESTFDMI function.
 ```go
 type RESTFDMI interface {
 	Name() string
@@ -227,7 +231,11 @@ type RESTFDMI interface {
 }
 ```
 
-## func [NewRESTFDMI() RESTFDMI](<methods.go#L31>)
+## func [NewRESTFDMI() RESTFDMI](<methods.go#L37>)
+
+Returns a new RESTFDMI implementation for interacting with
+the *fdmi* module.
+
 
 ```go
 func NewRESTFDMI(config *api_interface.RESTConfig) RESTFDMI

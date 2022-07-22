@@ -74,7 +74,11 @@ type MediaRDP struct {
 }
 ```
 
-## type [RESTMedia](<methods.go#L9>)
+## type [RESTMedia](<methods.go#L12>)
+
+RESTMedia describes an interface for interacting with the
+*media* module.
+Fetch a new instance using the NewRESTMedia function.
 ```go
 type RESTMedia interface {
 	Name() string
@@ -84,7 +88,7 @@ type RESTMedia interface {
 }
 ```
 
-## func [NewRESTMedia() RESTMedia](<methods.go#L20>)
+## func [NewRESTMedia() RESTMedia](<methods.go#L24>)
 
 ```go
 func NewRESTMedia(cfg *api_interface.RESTConfig) RESTMedia

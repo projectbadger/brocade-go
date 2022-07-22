@@ -8,6 +8,10 @@ import (
 	"github.com/projectbadger/brocade-go/rest/errors"
 )
 
+// RESTAccessGateway describes an interface for interacting
+// with the *brocade-access-gateway* module.
+// Fetch a new instance using the NewRESTBrocadeAccessGateway
+// function.
 type RESTAccessGateway interface {
 	Name() string
 	GetPortGroupResponse() (*http.Response, errors.BrocadeErr)
@@ -18,11 +22,14 @@ type RESTAccessGateway interface {
 	GetFPortList() ([]FPortList, errors.BrocadeErr)
 }
 
+// RESTAccesGateway implementation
 type restAccessGatewayImpl struct {
 	config *api_interface.RESTConfig
 }
 
-func NewAccessGateway(cfg *api_interface.RESTConfig) RESTAccessGateway {
+// Returns a new RESTAccessGateway implementation for
+// interacting with the *brocade-access-gateway* module.
+func NewRESTAccessGateway(cfg *api_interface.RESTConfig) RESTAccessGateway {
 	return &restAccessGatewayImpl{
 		config: cfg,
 	}
