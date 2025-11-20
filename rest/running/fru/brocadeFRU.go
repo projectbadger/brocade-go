@@ -131,7 +131,7 @@ type Fan struct {
 	UnitNumber uint `json:"unit-number,omitempty" xml:"unit-number"`
 	// The maximum power consumption allocated for the fan
 	// in watts.
-	PowerConsumption uint `json:"power-consumption,omitempty" xml:"power-consumption"`
+	PowerConsumption int `json:"power-consumption,omitempty" xml:"power-consumption"`
 	// The current operational state of the fan.
 	OperationalState string `json:"operational-state,omitempty" xml:"operational-state"`
 	// The fan speed in RPM.
@@ -176,6 +176,8 @@ type PowerSupply struct {
 	// The temperature of the power supply sensor in
 	// centigrade.
 	Temperature float64 `json:"temperature,omitempty" xml:"temperature"`
+	// Whether the temperature
+	TemperatureSensorSupported bool `json:"temperature-sensor-supported,omitempty" xml:"temperature-sensor-supported"`
 	// The real-time power consumed by the FRU.
 	PowerUsage int `json:"power-usage,omitempty" xml:"power-usage"`
 	// The number of days the FRU has been powered on.
