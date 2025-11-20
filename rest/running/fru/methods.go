@@ -39,7 +39,7 @@ func NewRESTFRU(config *api_interface.RESTConfig) RESTFRU {
 }
 
 func (r *restFRUImpl) GetBlade() ([]Blade, errors.BrocadeErr) {
-	req, httpErr := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/blade", nil)
+	req, httpErr := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/blade", nil)
 	if httpErr != nil {
 		return nil, errors.NewFromErr(httpErr)
 	}
@@ -54,7 +54,7 @@ func (r *restFRUImpl) GetBlade() ([]Blade, errors.BrocadeErr) {
 }
 
 func (r *restFRUImpl) GetFan() ([]Fan, errors.BrocadeErr) {
-	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fan", nil)
+	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/fan", nil)
 	if err != nil {
 		return nil, errors.NewFromErr(err)
 	}
@@ -69,7 +69,7 @@ func (r *restFRUImpl) GetFan() ([]Fan, errors.BrocadeErr) {
 }
 
 func (r *restFRUImpl) GetPowerSupply() ([]PowerSupply, errors.BrocadeErr) {
-	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/power-supply", nil)
+	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/power-supply", nil)
 	if err != nil {
 		return nil, errors.NewFromErr(err)
 	}

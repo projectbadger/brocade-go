@@ -40,9 +40,32 @@ func GetResponse(req *http.Request, config *RESTConfig) (*http.Response, []byte,
 	}
 	// fmt.Println("Got response body from client:", string(responseBytes))
 	errs := CheckBodyForErrors(responseBytes, config.ContentType())
+	if respErrs := CheckResponseForErrors(resp); len(respErrs.Errors) > 0 {
+		if errs == nil {
+			errs = &brocade_errors.Errors{}
+		}
+		for ix := range respErrs.Errors {
+			errs.AddError(respErrs.Errors[ix])
+		}
+	}
 	// if err == nil {
 	// Errors returned
 	return resp, responseBytes, errs
+}
+
+func CheckResponseForErrors(resp *http.Response) *brocade_errors.Errors {
+	var errs brocade_errors.Errors
+	if resp.StatusCode >= 400 {
+		errs.AddError(brocade_errors.Error{
+			ErrorType:    "http-status-error",
+			ErrorMessage: brocade_errors.ErrHttpResponseStatus.Error() + ": " + resp.Status,
+			ErrorInfo: brocade_errors.ErrorInfo{
+				ErrorCode:   resp.StatusCode,
+				ErrorModule: "http",
+			},
+		})
+	}
+	return &errs
 }
 
 func CheckBodyForErrors(body []byte, contentType utils.ContentType) brocade_errors.BrocadeErr {

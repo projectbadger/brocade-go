@@ -45,7 +45,7 @@ func NewRESTInterface(config *api_interface.RESTConfig) RESTInterface {
 }
 
 func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr) {
-	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/fibrechannel", nil)
+	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/fibrechannel", nil)
 	if err != nil {
 		return nil, errors.NewFromErr(err)
 	}
@@ -78,7 +78,7 @@ func (r *restInterfaceImpl) GetLogicalEPort(portIndex int) ([]LogicalEPort, erro
 	if portIndex > 0 {
 		portIndexStr = "/" + strconv.Itoa(portIndex)
 	}
-	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+"/"+r.URIPath()+"/logical-e-port"+portIndexStr, nil)
+	req, err := http.NewRequest("GET", r.config.Host()+r.config.BaseURI()+r.URIPath()+"/logical-e-port"+portIndexStr, nil)
 	if err != nil {
 		return nil, errors.NewFromErr(err)
 	}

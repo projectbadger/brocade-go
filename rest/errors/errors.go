@@ -8,7 +8,8 @@ import (
 )
 
 var (
-	ErrUnmarshalFailed = errors.New("error unmarshal failed")
+	ErrUnmarshalFailed    = errors.New("error unmarshal failed")
+	ErrHttpResponseStatus = errors.New("http response status error")
 )
 
 // BrocadeErr represents an error that may hold brocade
