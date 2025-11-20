@@ -56,7 +56,10 @@ func (r *restInterfaceImpl) GetFibrechannel() ([]Fibrechannel, errors.BrocadeErr
 	var fc []Fibrechannel
 	ct := r.config.ContentType()
 	err = ct.UnmarshalResponse(responseBytes, &fc)
-	return fc, errors.NewFromErr(err)
+	if err != nil && err.Error() != "" {
+		return fc, errors.NewFromErr(err)
+	}
+	return fc, nil
 }
 
 func (r *restInterfaceImpl) GetFibrechannelResponse() (*http.Response, errors.BrocadeErr) {
