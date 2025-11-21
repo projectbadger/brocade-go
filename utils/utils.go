@@ -6,7 +6,7 @@ import "encoding/base64"
 // any padding.
 func Base64URLEncode(content []byte) []byte {
 	b64 := make([]byte, base64.RawURLEncoding.EncodedLen(len(content)))
-	base64.RawURLEncoding.Encode(b64, content)
+	base64.URLEncoding.Encode(b64, content)
 	return b64
 }
 
@@ -14,6 +14,6 @@ func Base64URLEncode(content []byte) []byte {
 // any padding.
 func Base64URLDecode(content []byte) []byte {
 	b64 := make([]byte, base64.RawURLEncoding.DecodedLen(len(content)))
-	base64.RawURLEncoding.Decode(b64, content)
+	base64.URLEncoding.Decode(b64, content)
 	return b64
 }
